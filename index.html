@@ -80,6 +80,15 @@
   .trust-row span{display:flex;align-items:center;gap:7px}
   .trust-row span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
 
+  /* photos */
+  .photo{width:100%;border-radius:6px;object-fit:cover}
+  .photo-hero{height:340px;box-shadow:var(--shadow)}
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+  .photo-grid img{height:180px;border-radius:5px;object-fit:cover;width:100%}
+  .photo-about{width:100%;height:280px;border-radius:6px;object-fit:cover;box-shadow:var(--shadow)}
+  .photo-credit{font-size:.68rem;color:var(--muted);margin-top:6px;text-align:right}
+  .photo-credit a{color:var(--muted)}
+
   /* signature report card */
   .report{
     background:var(--card);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);
@@ -314,8 +323,13 @@
         </div>
       </div>
 
-      <!-- signature: monthly report card -->
-      <div class="report reveal" aria-label="毎月お届けする見守りレポートの見本">
+      <!-- hero right: photo + report card -->
+      <div>
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&h=400&fit=crop&crop=center" alt="手入れされた一軒家の外観" class="photo photo-hero reveal" loading="lazy">
+        <p class="photo-credit">Photo by <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>（実際の管理物件の写真に差し替え予定）</p>
+
+        <!-- signature: monthly report card -->
+        <div class="report reveal" style="margin-top:22px" aria-label="毎月お届けする見守りレポートの見本">
         <div class="rhead">
           <b>今月の見守りレポート</b>
           <time>2026年8月◯日</time>
@@ -355,10 +369,9 @@
           <span>LINE・メールでお届け</span>
         </div>
       </div>
+      </div>
     </div>
   </section>
-
-  <!-- WORRIES -->
   <section id="worries">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -393,6 +406,11 @@
         <div class="svc-note reveal">
           <b>行かなくても、家の様子がわかる。</b>
           巡回のたびに、写真つきの報告書をLINEまたはメールでお送りします。遠くにお住まいでも、スマホひとつで実家の状態を確認できます。気になる点があれば、写真とあわせてすぐにご連絡します。
+          <div class="photo-grid">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=260&fit=crop&crop=center" alt="窓を開けて換気する様子" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=260&fit=crop&crop=center" alt="水道の通水確認" loading="lazy">
+          </div>
+          <p class="photo-credit">Photo by <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>（実際の作業写真に差し替え予定）</p>
         </div>
       </div>
     </div>
@@ -548,6 +566,8 @@
       </div>
       <div class="about-grid">
         <div class="about reveal">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&h=320&fit=crop&crop=center" alt="住宅街の風景" class="photo-about" loading="lazy" style="margin-bottom:18px">
+          <p class="photo-credit" style="margin-bottom:14px">Photo by <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>（代表の顔写真に差し替え予定）</p>
           <p>私自身、埼玉に父方の実家があり、東京と行き来しながら「離れた家をどう守るか」を考えてきました。中小企業診断士として数多くの事業を見てきた経験から、空き家は“見回るだけ”では解決せず、<strong>いつか必ず「どうするか」を決める日</strong>が来ると感じています。</p>
           <p>だから家守は、毎月の見守りと同時に、相続・税・売却といった“その先”まで一緒に考えます。実際に家へうかがうのは、その地域に暮らし、土地に縁のある担当者。だれかの大切な実家を、我が事のような気持ちでお預かりします。</p>
           <p class="sign">株式会社ネクストアップ　代表取締役　吉野 一哉<br><span style="font-size:.8rem;color:var(--muted);font-family:var(--sans)">中小企業診断士／認定経営革新等支援機関</span></p>
