@@ -236,8 +236,9 @@
   .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .form-note{font-size:.76rem;color:var(--muted);margin-top:12px;text-align:center}
   .form-msg{display:none;padding:14px 16px;border-radius:5px;font-size:.9rem;margin-bottom:16px}
-  .form-msg.ok{display:block;background:var(--green-soft);color:var(--green-deep);border:1px solid var(--green)}
-  .form-msg.err{display:block;background:#fdecec;color:#a23b3b;border:1px solid #e3a3a3}
+  .form-msg.ok{background:var(--green-soft);color:var(--green-deep);border:1px solid var(--green)}
+  .form-msg.err{background:#fdecec;color:#a23b3b;border:1px solid #e3a3a3}
+  .form-msg.show{display:block}
   .form-done .contact-form>*:not(.form-msg){display:none}
 
   /* reveal */
@@ -698,7 +699,7 @@
     form.addEventListener('submit',function(e){
       e.preventDefault();
       var ok=document.getElementById('formOk'),err=document.getElementById('formErr');
-      ok.style.display='none';err.style.display='none';
+      ok.classList.remove('show');err.classList.remove('show');
       var btn=form.querySelector('button[type=submit]');
       var endpoint=form.getAttribute('action');
       // エンドポイント未設定なら注意（デプロイ前のプレビュー対策）
@@ -714,11 +715,11 @@
       }).then(function(r){
         if(r.ok){
           form.parentElement.classList.add('form-done');
-          ok.style.display='block';
+          ok.classList.add('show');
           ok.scrollIntoView({behavior:'smooth',block:'center'});
         }else{throw new Error('bad');}
       }).catch(function(){
-        err.style.display='block';
+        err.classList.add('show');
         btn.disabled=false;btn.textContent='無料で相談する';
       });
     });
