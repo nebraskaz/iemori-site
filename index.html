@@ -140,7 +140,7 @@
   .band .sec-head p{color:#c3cdd8}
 
   /* worries */
-  .worries{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .worries{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .worry{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:26px 22px;text-align:center}
   .worry .n{font-family:var(--serif);color:var(--green);font-size:.9rem;letter-spacing:.1em}
   .worry p{margin-top:12px;font-weight:500;font-size:1.02rem;color:var(--ink);font-family:var(--serif)}
@@ -173,6 +173,8 @@
   .plan{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:32px 26px;display:flex;flex-direction:column}
   .plan.feature{border:1.5px solid var(--green);position:relative}
   .plan.feature::before{content:"契約者は初回無料";position:absolute;top:-12px;left:26px;background:var(--green);color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px}
+  .plan.premium{border:1.5px solid #8b7355;position:relative;background:linear-gradient(180deg,#fffdf6 0%,var(--card) 100%)}
+  .plan.premium::before{content:"資産価値の高い物件に";position:absolute;top:-12px;left:26px;background:#8b7355;color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px}
   .plan h3{font-size:1.2rem;color:var(--indigo-deep)}
   .plan .price{font-family:var(--serif);font-size:1.9rem;color:var(--green-deep);margin:14px 0 6px}
   .plan .price small{font-size:.85rem;color:var(--muted);font-family:var(--sans);font-weight:500}
@@ -337,7 +339,7 @@
       <div class="reveal">
         <span class="eyebrow eyebrow-hero">東京・城南 ／ 埼玉・比企エリア 対応</span>
         <h1>誰も住まない実家を、<br><span class="accent">家族に代わって</span>見守ります。</h1>
-        <p class="lead">相続した空き家や遠方のご実家、法人の遊休物件を、地元に暮らす担当者が毎月巡回し、写真付きでご報告。中小企業診断士が窓口となり、「見守り」だけでなく<strong>売る・貸す・活かす</strong>という“その先”のご相談まで、まとめてお引き受けします。</p>
+        <p class="lead">相続した空き家や遠方のご実家、法人の遊休物件を、地元に暮らす担当者が毎月巡回し、写真付きでご報告。中小企業診断士が窓口となり、「見守り」だけでなく<strong>売る・貸す・活かす</strong>という“その先”のご相談まで、まとめてお引き受けします。資産価値の高い物件には、代表が直接対応するプレミアムプランもご用意しています。</p>
         <div class="hero-cta">
           <a class="btn btn-primary btn-lg" href="#contact">無料で相談する</a>
           <a class="btn btn-ghost btn-lg" href="#price">料金プランを見る</a>
@@ -402,6 +404,7 @@
         <div class="worry"><span class="n">03</span><p>親が施設に入り、<br>家が空いた</p></div>
         <div class="worry"><span class="n">04</span><p>売るか貸すか、<br>決めきれない</p></div>
         <div class="worry"><span class="n">05</span><p>法人の遊休物件、<br>管理が手薄</p></div>
+        <div class="worry"><span class="n">06</span><p>資産価値の高い物件、<br>信頼できる先に任せたい</p></div>
       </div>
     </div>
   </section>
@@ -468,7 +471,7 @@
         <h2>わかりやすい、月額の見守り料金。</h2>
         <p>物件の広さ・状態・エリアにより変動します。追加請求はありません。まずは無料でお見積もりします。</p>
       </div>
-      <div class="plans" style="grid-template-columns:repeat(4,1fr)">
+      <div class="plans" style="grid-template-columns:repeat(5,1fr)">
         <div class="plan reveal">
           <h3>見守りライト</h3>
           <div class="price">月額 9,900円〜 <small>税込</small></div>
@@ -487,6 +490,18 @@
             <li>ライトの内容すべて</li>
             <li>室内の簡易清掃</li>
             <li>緊急時の一次対応</li>
+          </ul>
+        </div>
+        <div class="plan premium reveal">
+          <h3>資産管理プレミアム</h3>
+          <div class="price">月額 33,000円〜 <small>税込</small></div>
+          <ul>
+            <li>代表が直接対応</li>
+            <li>月次レポート（PDF＋所見）</li>
+            <li>四半期ごとの面談</li>
+            <li>相続・活用の出口相談</li>
+            <li>士業連携＋補助金申請支援</li>
+            <li>複数物件の一括管理</li>
           </ul>
         </div>
         <div class="plan reveal">
@@ -677,6 +692,7 @@
               <select id="f-topic" name="ご相談内容" required>
                 <option value="">選択してください</option>
                 <option>空き家の見守り管理（個人）</option>
+                <option>資産管理プレミアム</option>
                 <option>物件の管理（法人）</option>
                 <option>相続後の活用・売却の相談</option>
                 <option>管理と相続の両方</option>
