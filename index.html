@@ -206,15 +206,35 @@
     padding:34px 36px;position:relative;border-top:5px solid var(--kin);
   }
   .pdf-card .ph-label{position:absolute;top:14px;right:-8px;background:var(--indigo);color:#fff;font-size:.62rem;letter-spacing:.15em;padding:4px 12px;font-weight:700;font-family:var(--sans)}
-  .pdf-card .rhead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}
-  .pdf-card .rhead b{font-family:var(--serif);font-size:1.15rem;color:var(--indigo-deep)}
-  .pdf-card .rhead .sub2{display:block;font-size:.72rem;color:var(--kin);letter-spacing:.14em;font-family:var(--sans);font-weight:700;margin-bottom:4px}
-  .pdf-card .rhead time{font-size:.78rem;color:var(--muted)}
-  .pdf-rows{list-style:none;font-size:.88rem}
-  .pdf-rows li{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .pdf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:2px solid var(--indigo-deep);padding-bottom:14px;margin-bottom:14px}
+  .pdf-top .sub2{display:block;font-size:.7rem;color:var(--kin);letter-spacing:.14em;font-family:var(--sans);font-weight:700;margin-bottom:4px}
+  .pdf-top .pname{font-family:var(--serif);font-size:1.1rem;color:var(--indigo-deep);font-weight:600;display:block;line-height:1.5}
+  .pdf-top .pmeta{display:block;font-size:.7rem;color:var(--muted);margin-top:4px}
+  .grade{text-align:center;border:1px solid rgba(150,121,63,.45);background:var(--kin-soft);padding:7px 16px 8px;border-radius:3px;flex:none}
+  .grade span{display:block;font-size:.6rem;color:var(--kin);letter-spacing:.18em;font-weight:700}
+  .grade b{font-family:var(--serif);font-size:1.8rem;color:var(--kin);line-height:1.2;display:block}
+  .grade small{display:block;font-size:.66rem;color:#4a4436}
+  .pdf-rows{list-style:none;font-size:.82rem;display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+  .pdf-rows li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
   .pdf-rows li span:first-child{color:var(--muted)}
-  .pdf-rows li span:last-child{font-weight:600;color:var(--ink)}
+  .pdf-rows li span:last-child{font-weight:600;color:var(--ink);white-space:nowrap}
   .pdf-rows li .good{color:var(--green-deep)}
+  .pdf-rows li .warn{color:var(--kin)}
+  .pdf-photos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:14px}
+  .pdf-photos figure{position:relative;border-radius:3px;overflow:hidden;height:64px;margin:0}
+  .pdf-photos img{width:100%;height:100%;object-fit:cover}
+  .pdf-photos figcaption{position:absolute;bottom:0;left:0;right:0;background:rgba(23,42,65,.55);color:#fff;font-size:.6rem;text-align:center;padding:2px 0}
+  .shot-note{font-size:.68rem;color:var(--muted);margin-top:6px;text-align:right}
+  .pdf-actions{margin-top:14px}
+  .pdf-actions>b{font-family:var(--serif);color:var(--indigo-deep);font-size:.9rem;display:block;margin-bottom:2px}
+  .act{display:flex;gap:9px;align-items:baseline;font-size:.82rem;padding:8px 0;border-bottom:1px dashed var(--line);color:#4a4436;line-height:1.7}
+  .act .tag2{font-size:.64rem;font-weight:700;padding:2px 9px;border-radius:2px;flex:none;letter-spacing:.06em}
+  .act .tag2.rec{background:var(--kin);color:#fff}
+  .act .tag2.watch{background:#e8e2d2;color:#6f6b60}
+  .pdf-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+  .pdf-stats div{background:#f6f2e7;border-radius:3px;padding:9px 6px;text-align:center}
+  .pdf-stats span{display:block;font-size:.62rem;color:var(--muted);margin-bottom:2px}
+  .pdf-stats b{font-size:.8rem;color:var(--indigo-deep);font-family:var(--serif)}
   .pdf-view{
     margin-top:18px;background:var(--kin-soft);border:1px solid rgba(150,121,63,.25);border-radius:3px;
     padding:16px 18px;font-size:.86rem;line-height:1.85;color:#4a4436;
@@ -466,6 +486,11 @@
     .hero p.lead{font-size:.98rem}
     .cred-row span{padding-right:0;margin-right:18px;font-size:.8rem}
     .pdf-card{padding:26px 22px}
+    .pdf-rows{grid-template-columns:1fr}
+    .pdf-photos figure{height:86px}
+    .pdf-stats{grid-template-columns:1fr;gap:6px}
+    .pdf-stats div{display:flex;justify-content:space-between;align-items:center;text-align:left;padding:9px 12px}
+    .pdf-stats span{margin-bottom:0}
     .proof-grid{grid-template-columns:1fr}
     .proof-item{border-left:none!important;border-top:1px solid var(--line)}
     .proof-item:first-child{border-top:none}
@@ -647,19 +672,41 @@
         <div class="reveal">
           <div class="pdf-card">
             <span class="ph-label">見本</span>
-            <div class="rhead">
-              <b><span class="sub2">ASSET REPORT ─ 月次資産管理レポート</span>世田谷区・戸建（木造二階建）</b>
-              <time>2026年6月度</time>
+            <div class="pdf-top">
+              <div>
+                <span class="sub2">ASSET REPORT ─ 月次資産管理レポート</span>
+                <b class="pname">世田谷区・戸建（木造二階建）</b>
+                <span class="pmeta">2026年6月度｜第12回巡回｜6月10日（水）実施</span>
+              </div>
+              <div class="grade"><span>資産評価</span><b>良好</b><small>前月から維持</small></div>
             </div>
             <ul class="pdf-rows">
               <li><span>外観・屋根・外壁</span><span class="good">異常なし</span></li>
               <li><span>室内・雨漏り・カビ</span><span class="good">異常なし</span></li>
-              <li><span>通水・電気・ガス元栓</span><span class="good">実施・確認済</span></li>
-              <li><span>庭木・外周</span><span>要観察（下記所見）</span></li>
+              <li><span>通水・電気・ガス</span><span class="good">実施・確認済</span></li>
+              <li><span>防犯・施錠</span><span class="good">全箇所確認</span></li>
+              <li><span>郵便物・チラシ</span><span class="good">回収・処分</span></li>
+              <li><span>庭木・外周</span><span class="warn">要観察</span></li>
             </ul>
+            <div class="pdf-photos">
+              <figure><img src="report-exterior.jpeg" alt="外観の記録写真" loading="lazy"><figcaption>外観</figcaption></figure>
+              <figure><img src="report-interior.jpeg" alt="室内の記録写真" loading="lazy"><figcaption>室内</figcaption></figure>
+              <figure><img src="report-water.jpeg" alt="水回りの記録写真" loading="lazy"><figcaption>水回り</figcaption></figure>
+            </div>
+            <p class="shot-note">※ 毎回20枚前後を撮影し、レポートに添付します</p>
             <div class="pdf-view">
               <b>今月の所見</b>
-              南側の庭木が越境しつつあります。夏前の剪定を推奨します（概算2〜3万円）。建物本体は良好で、現状の資産価値を維持できています。売却相場は前四半期から横ばいです。
+              南側の庭木が越境しつつあります。建物本体は雨漏り・カビの兆候もなく良好で、現状の資産価値を維持できています。
+            </div>
+            <div class="pdf-actions">
+              <b>対処の優先順位</b>
+              <div class="act"><span class="tag2 rec">推奨</span>庭木の剪定（夏前の実施を推奨・概算2〜3万円）</div>
+              <div class="act"><span class="tag2 watch">経過観察</span>外壁シーリングの微細なひび。次回巡回で経過を確認します</div>
+            </div>
+            <div class="pdf-stats">
+              <div><span>周辺の売却相場</span><b>前四半期から横ばい</b></div>
+              <div><span>特定空家リスク</span><b>なし</b></div>
+              <div><span>次回巡回予定</span><b>7月10日（金）</b></div>
             </div>
             <div class="pdf-foot">
               <div class="who"><b>家守（いえもり）</b>担当：代表取締役　吉野 一哉<br>中小企業診断士（経済産業大臣登録）</div>
