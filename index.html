@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>家守（いえもり）｜相続空き家の見守り管理｜東京・城南／埼玉・比企</title>
-<meta name="description" content="相続した空き家・遠方のご実家・法人の遊休物件を、地元在住の担当者が毎月巡回し写真付きで報告。中小企業診断士が窓口となり、管理から売却・賃貸・活用まで士業連携でワンストップ。東京(大田区・品川区ほか)と埼玉(比企郡ほか)で対応。月額9,900円〜。">
+<title>家守（いえもり）｜相続した家の資産管理・空き家見守り｜国家資格者（中小企業診断士）が直接対応</title>
+<meta name="description" content="相続した家・空き家は、大切な資産です。国家資格・中小企業診断士である代表が窓口となり、毎月の巡回見守りから相続の出口（売却・賃貸・活用）まで直接対応。税理士・司法書士と連携し、資産価値を守ります。東京・城南／埼玉・比企。月額9,900円〜、資産管理プレミアムは月額33,000円〜。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,15 +13,19 @@
     --ink:#22262b;
     --indigo:#223a56;
     --indigo-deep:#172a41;
+    --indigo-night:#101e30;
     --green:#4f7355;
     --green-deep:#3c5c41;
     --green-soft:#eef2ea;
+    --kin:#96793f;          /* 金茶：プレミアムの格 */
+    --kin-bright:#c2a662;
+    --kin-soft:#f6f0e2;
     --paper:#f4efe4;
     --card:#fffdf9;
     --line:#e4dcc9;
     --muted:#6f6b60;
     --shadow:0 1px 2px rgba(23,42,65,.05),0 8px 30px rgba(23,42,65,.07);
-    --maxw:1080px;
+    --maxw:1120px;
     --serif:"Shippori Mincho",serif;
     --sans:"Zen Kaku Gothic New",system-ui,sans-serif;
   }
@@ -30,237 +34,351 @@
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{
     font-family:var(--sans);color:var(--ink);background:var(--paper);
-    line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;
+    line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;
     text-underline-offset:3px;
   }
-  h1,h2,h3{font-family:var(--serif);line-height:1.4;font-weight:600;letter-spacing:.01em}
+  /* 和紙の質感（ごく淡いノイズ） */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3{font-family:var(--serif);line-height:1.5;font-weight:600;letter-spacing:.02em}
   a{color:inherit}
   img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .eyebrow{
-    font-size:.92rem;letter-spacing:.18em;color:var(--green-deep);
-    font-weight:700;display:inline-block;margin-bottom:18px;
-  }
-  .eyebrow::before{content:"";display:inline-block;width:26px;height:2px;background:var(--green);vertical-align:middle;margin-right:10px}
-  .eyebrow-hero{font-size:1.05rem;background:var(--green-soft);padding:8px 18px;border-radius:30px;letter-spacing:.12em}
+  strong{font-weight:700}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+  /* 見出しの kicker（漢数字＋罫） */
+  .kicker{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .kicker .no{font-family:var(--serif);font-size:.95rem;color:var(--kin);letter-spacing:.3em}
+  .kicker .bar{width:44px;height:1px;background:var(--kin)}
+  .kicker .label{font-size:.88rem;letter-spacing:.22em;color:var(--green-deep);font-weight:700}
+  .band .kicker .label{color:#a9c4ad}
+  .band .kicker .no{color:var(--kin-bright)}
+  .band .kicker .bar{background:var(--kin-bright)}
 
   /* buttons */
   .btn{
     display:inline-block;font-family:var(--sans);font-weight:700;font-size:.98rem;
-    padding:15px 30px;border-radius:2px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;
-    transition:transform .15s ease,background .2s ease,color .2s ease;
+    padding:16px 34px;border-radius:2px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .15s ease,background .2s ease,color .2s ease,box-shadow .2s ease;
+    letter-spacing:.05em;
   }
-  .btn-primary{background:var(--green);color:#fff}
+  .btn-primary{background:var(--green);color:#fff;box-shadow:0 4px 14px rgba(60,92,65,.28)}
   .btn-primary:hover{background:var(--green-deep);transform:translateY(-2px)}
   .btn-ghost{background:transparent;color:var(--indigo);border-color:var(--indigo)}
   .btn-ghost:hover{background:var(--indigo);color:#fff}
-  .btn-lg{padding:18px 40px;font-size:1.05rem}
+  .btn-ghost-light{background:transparent;color:#f4efe4;border-color:rgba(244,239,228,.55)}
+  .btn-ghost-light:hover{background:rgba(244,239,228,.12);border-color:#f4efe4}
+  .btn-kin{background:linear-gradient(135deg,#a8894e,#8b7040);color:#fff;box-shadow:0 4px 16px rgba(150,121,63,.35)}
+  .btn-kin:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(150,121,63,.45)}
+  .btn-lg{padding:18px 44px;font-size:1.05rem}
   :focus-visible{outline:3px solid var(--green);outline-offset:3px}
 
   /* header */
-  header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
-  .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
-  .brand .mark{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--indigo);letter-spacing:.04em}
-  .brand .mark small{font-size:.62rem;letter-spacing:.15em;color:var(--muted);font-family:var(--sans);font-weight:500}
-  .navlinks{display:flex;align-items:center;gap:26px;list-style:none}
+  header{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand .mark{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--indigo);letter-spacing:.06em}
+  .brand .mark small{font-size:.6rem;letter-spacing:.18em;color:var(--muted);font-family:var(--sans);font-weight:500;margin-left:6px}
+  .brand .cred{font-size:.66rem;color:var(--kin);font-family:var(--sans);font-weight:700;letter-spacing:.08em;border:1px solid rgba(150,121,63,.4);padding:3px 10px;border-radius:2px;background:var(--kin-soft)}
+  .navlinks{display:flex;align-items:center;gap:24px;list-style:none}
   .navlinks a{text-decoration:none;font-size:.9rem;font-weight:600;color:var(--ink)}
-  .navlinks a:hover{opacity:1;color:var(--green-deep)}
-  .nav .btn{padding:10px 22px;font-size:.88rem;font-weight:700;box-shadow:0 1px 4px rgba(79,115,85,.25);color:#fff!important}
+  .navlinks a:hover{color:var(--green-deep)}
+  .nav .btn{padding:11px 24px;font-size:.88rem;color:#fff!important}
   .navtoggle{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
   .navtoggle span{display:block;width:24px;height:2px;background:var(--indigo);transition:.25s}
 
-  /* hero */
-  .hero{padding:76px 0 90px;position:relative;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .hero h1{font-size:clamp(2rem,4.4vw,3.15rem);color:var(--indigo-deep);margin-bottom:24px}
-  .hero h1 .accent{color:var(--green-deep)}
-  .hero p.lead{font-size:1.08rem;color:#3a3f45;max-width:33em;margin-bottom:34px}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-  .trust-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-  .trust-row span{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:600;color:var(--indigo-deep);background:var(--card);border:1.5px solid var(--line);padding:8px 16px;border-radius:30px}
-  .trust-row span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;color:#f4efe4;overflow:hidden;
+    background:var(--indigo-night);
+  }
+  .hero .bg{
+    position:absolute;inset:0;
+    background:url("hero.jpeg") center 38%/cover no-repeat;
+    opacity:.5;
+  }
+  .hero .veil{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(100deg,rgba(13,24,38,.94) 0%,rgba(16,30,48,.82) 42%,rgba(16,30,48,.35) 75%,rgba(16,30,48,.55) 100%),
+      linear-gradient(0deg,rgba(13,24,38,.85) 0%,transparent 30%);
+  }
+  .hero-inner{position:relative;z-index:2;padding-top:96px;padding-bottom:110px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .hero .tate{
+    writing-mode:vertical-rl;font-family:var(--serif);font-size:1.05rem;letter-spacing:.42em;
+    color:rgba(244,239,228,.85);border-right:1px solid rgba(194,166,98,.5);padding-right:22px;
+    height:300px;align-self:center;font-weight:500;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;
+    border:1px solid rgba(194,166,98,.55);background:rgba(194,166,98,.12);
+    padding:9px 20px;font-size:.86rem;letter-spacing:.14em;color:#e8d9b0;font-weight:600;border-radius:2px;
+  }
+  .hero-badge::before{content:"";width:7px;height:7px;background:var(--kin-bright);transform:rotate(45deg)}
+  .hero h1{
+    font-size:clamp(2.05rem,4.6vw,3.4rem);color:#fdfbf5;margin-bottom:26px;line-height:1.55;
+    font-weight:600;letter-spacing:.03em;
+  }
+  .hero h1 .kin{color:var(--kin-bright)}
+  .hero p.lead{font-size:1.06rem;color:rgba(244,239,228,.88);max-width:35em;margin-bottom:38px;line-height:2.05}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:42px}
+  .cred-row{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid rgba(244,239,228,.2)}
+  .cred-row span{
+    display:flex;align-items:center;gap:9px;font-size:.86rem;font-weight:600;color:rgba(244,239,228,.92);
+    padding:16px 26px 2px 0;margin-right:26px;letter-spacing:.04em;
+  }
+  .cred-row span::before{content:"";width:8px;height:8px;border:1px solid var(--kin-bright);transform:rotate(45deg);flex:none}
 
-  /* LINE mock chat */
-  .line-mock{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);position:relative;max-width:380px;margin:0 auto}
+  /* ============ 信頼の根拠バー ============ */
+  .proof{background:var(--card);border-bottom:1px solid var(--line);position:relative;z-index:2}
+  .proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .proof-item{padding:34px 26px;border-left:1px solid var(--line);text-align:center}
+  .proof-item:first-child{border-left:none}
+  .proof-item .t{font-family:var(--serif);font-size:1.06rem;color:var(--indigo-deep);font-weight:600;line-height:1.6}
+  .proof-item .d{font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.7}
+  .proof-item .t b{color:var(--kin)}
+
+  /* section scaffolding */
+  section{padding:96px 0;position:relative;z-index:2}
+  .sec-head{max-width:42em;margin-bottom:52px}
+  .sec-head h2{font-size:clamp(1.6rem,3.1vw,2.25rem);color:var(--indigo-deep);margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:1.02rem}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head.center .kicker{justify-content:center}
+  .band{background:linear-gradient(180deg,var(--indigo-deep),var(--indigo-night));color:#f4efe4}
+  .band .sec-head h2,.band h2,.band h3{color:#fdfbf5}
+  .band .sec-head p{color:#b9c4d0}
+
+  /* ============ お悩み ============ */
+  .worries{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .worry{
+    background:var(--card);border:1px solid var(--line);padding:30px 26px;position:relative;
+    border-radius:3px;transition:box-shadow .3s ease,transform .3s ease;
+  }
+  .worry:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+  .worry .n{font-family:var(--serif);color:var(--kin);font-size:.88rem;letter-spacing:.25em}
+  .worry p{margin-top:14px;font-weight:600;font-size:1.04rem;color:var(--indigo-deep);font-family:var(--serif);line-height:1.75}
+  .worry small{display:block;margin-top:10px;font-size:.84rem;color:var(--muted);font-weight:400;line-height:1.7}
+  .worries-close{
+    text-align:center;margin-top:46px;font-family:var(--serif);font-size:1.25rem;color:var(--indigo-deep);line-height:2;
+  }
+  .worries-close b{border-bottom:2px solid var(--kin-bright);padding-bottom:2px;font-weight:600}
+
+  /* ============ 比較表 ============ */
+  .compare{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
+  .compare th,.compare td{padding:18px 22px;text-align:center;border-bottom:1px solid var(--line);font-size:.94rem;vertical-align:middle}
+  .compare tr:last-child th,.compare tr:last-child td{border-bottom:none}
+  .compare thead th{font-family:var(--serif);font-size:1rem;padding:20px 22px}
+  .compare thead th.them{background:#efece3;color:var(--muted)}
+  .compare thead th.us{background:var(--indigo-deep);color:#fff;font-size:1.1rem;letter-spacing:.06em}
+  .compare tbody th{background:#faf7ee;text-align:left;font-weight:600;color:var(--indigo-deep);font-size:.92rem;width:26%}
+  .compare td.them{color:var(--muted);background:#fcfbf7}
+  .compare td.us{background:#fffef9;font-weight:600;color:var(--ink)}
+  .compare td.us b{color:var(--kin)}
+  .maru{color:var(--kin);font-family:var(--serif);font-size:1.15rem;display:block;line-height:1.4}
+  .batsu{color:#b0aa9c;display:block;line-height:1.4}
+
+  /* ============ プレミアム ============ */
+  .premium-sec{position:relative;overflow:hidden}
+  .premium-sec::after{
+    content:"守";position:absolute;right:-60px;top:40px;font-family:var(--serif);
+    font-size:26rem;color:rgba(194,166,98,.05);line-height:1;pointer-events:none;font-weight:700;
+  }
+  .premium-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+  .premium-copy h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-bottom:22px}
+  .premium-copy .sub{color:#b9c4d0;margin-bottom:30px;font-size:1.02rem}
+  .p-deliver{list-style:none;display:grid;gap:0;border-top:1px solid rgba(194,166,98,.35)}
+  .p-deliver li{padding:20px 4px;border-bottom:1px solid rgba(244,239,228,.14);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline}
+  .p-deliver .pn{font-family:var(--serif);color:var(--kin-bright);font-size:.9rem;letter-spacing:.2em}
+  .p-deliver b{display:block;font-family:var(--serif);font-size:1.08rem;color:#fdfbf5;font-weight:600;margin-bottom:4px}
+  .p-deliver p{font-size:.9rem;color:#b9c4d0;line-height:1.85}
+  .premium-price{
+    margin-top:34px;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
+  }
+  .premium-price .yen{font-family:var(--serif);font-size:2.4rem;color:var(--kin-bright)}
+  .premium-price .yen small{font-size:.9rem;color:#b9c4d0;font-family:var(--sans)}
+  .premium-price .note{font-size:.82rem;color:#8fa0b2}
+  /* 月次レポート見本カード */
+  .pdf-card{
+    background:#fdfbf5;color:var(--ink);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.4);
+    padding:34px 36px;position:relative;border-top:5px solid var(--kin);
+  }
+  .pdf-card .ph-label{position:absolute;top:14px;right:-8px;background:var(--indigo);color:#fff;font-size:.62rem;letter-spacing:.15em;padding:4px 12px;font-weight:700;font-family:var(--sans)}
+  .pdf-card .rhead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}
+  .pdf-card .rhead b{font-family:var(--serif);font-size:1.15rem;color:var(--indigo-deep)}
+  .pdf-card .rhead .sub2{display:block;font-size:.72rem;color:var(--kin);letter-spacing:.14em;font-family:var(--sans);font-weight:700;margin-bottom:4px}
+  .pdf-card .rhead time{font-size:.78rem;color:var(--muted)}
+  .pdf-rows{list-style:none;font-size:.88rem}
+  .pdf-rows li{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .pdf-rows li span:first-child{color:var(--muted)}
+  .pdf-rows li span:last-child{font-weight:600;color:var(--ink)}
+  .pdf-rows li .good{color:var(--green-deep)}
+  .pdf-view{
+    margin-top:18px;background:var(--kin-soft);border:1px solid rgba(150,121,63,.25);border-radius:3px;
+    padding:16px 18px;font-size:.86rem;line-height:1.85;color:#4a4436;
+  }
+  .pdf-view b{font-family:var(--serif);color:var(--kin);display:block;margin-bottom:4px;font-size:.92rem}
+  .pdf-foot{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
+  .hanko{
+    width:52px;height:52px;border:2px solid #b3402e;border-radius:50%;color:#b3402e;
+    font-family:var(--serif);font-weight:700;display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;transform:rotate(-4deg);opacity:.85;
+  }
+  .pdf-foot .who{font-size:.78rem;color:var(--muted);line-height:1.7}
+  .pdf-foot .who b{font-family:var(--serif);color:var(--indigo-deep);font-size:.92rem}
+  .premium-for{margin-top:26px;background:rgba(244,239,228,.07);border:1px solid rgba(244,239,228,.16);border-radius:4px;padding:26px 28px}
+  .premium-for b{font-family:var(--serif);color:#fdfbf5;display:block;margin-bottom:12px;font-size:1.02rem}
+  .premium-for li{list-style:none;padding:6px 0 6px 24px;position:relative;font-size:.92rem;color:#d5dde5}
+  .premium-for li::before{content:"";position:absolute;left:2px;top:16px;width:8px;height:8px;border:1px solid var(--kin-bright);transform:rotate(45deg)}
+
+  /* ============ サービス ============ */
+  .svc{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:start}
+  .svc-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
+  .svc-table th,.svc-table td{text-align:left;padding:18px 20px;vertical-align:top;border-bottom:1px solid var(--line)}
+  .svc-table tr:last-child th,.svc-table tr:last-child td{border-bottom:none}
+  .svc-table th{width:110px;background:var(--green-soft);color:var(--green-deep);font-family:var(--serif);font-weight:600;font-size:.98rem}
+  .svc-table td{font-size:.92rem;color:#3a3f45}
+  .svc-note{background:var(--green-soft);border-radius:4px;padding:28px;font-size:.93rem}
+  .svc-note b{font-family:var(--serif);color:var(--indigo-deep);font-size:1.08rem;display:block;margin-bottom:10px}
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  .photo-grid img{height:170px;border-radius:3px;object-fit:cover;width:100%}
+
+  /* LINE mock */
+  .line-mock{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);position:relative;max-width:390px;margin:0 auto}
   .line-header{background:#4f7355;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-size:.9rem;font-weight:600}
   .line-back{opacity:.7;font-size:.8rem}
-  .line-name{font-family:var(--sans)}
   .line-icons{opacity:.7;font-size:1.1rem}
-  .line-body{background:#8cabd0;padding:14px 12px 18px;min-height:200px}
-  .line-date{text-align:center;font-size:.7rem;color:#fff;background:rgba(0,0,0,.18);display:inline-block;padding:3px 12px;border-radius:14px;margin:0 auto 14px;display:block;width:fit-content}
+  .line-body{background:#8cabd0;padding:14px 12px 18px}
+  .line-date{text-align:center;font-size:.7rem;color:#fff;background:rgba(0,0,0,.18);padding:3px 12px;border-radius:14px;margin:0 auto 14px;display:block;width:fit-content}
   .line-row{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start}
   .line-row-right{justify-content:flex-end}
   .line-avatar{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex:none;font-family:var(--serif)}
   .line-bubble{background:#fff;border-radius:0 12px 12px 12px;padding:10px 13px;font-size:.82rem;line-height:1.65;color:#333;max-width:270px;margin-bottom:4px}
   .line-bubble-green{background:#b2e28e;border-radius:12px 0 12px 12px;margin-left:auto;color:#333}
   .line-time{font-size:.65rem;color:rgba(255,255,255,.75);margin-top:2px}
-  .line-photos{display:grid;grid-template-columns:1fr 1fr;gap:5px;max-width:270px;margin-bottom:4px}
-  .line-photo-placeholder{background:#e8ecf0;border-radius:8px;height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:.68rem;color:#8b9198}
+  .line-photos{display:grid;gap:5px;max-width:270px;margin-bottom:4px}
   .line-photo-img{position:relative;border-radius:8px;overflow:hidden;height:70px}
   .line-photo-img img{width:100%;height:100%;object-fit:cover;display:block}
   .line-photo-img span{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);color:#fff;font-size:.62rem;text-align:center;padding:2px 0}
   .line-label{position:absolute;top:48px;right:-6px;background:var(--indigo);color:#fff;font-size:.62rem;letter-spacing:.15em;padding:4px 12px;font-weight:700;font-family:var(--sans)}
 
-  /* photos */
-  .photo{width:100%;border-radius:6px;object-fit:cover}
-  .photo-hero{height:340px;box-shadow:var(--shadow)}
-  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
-  .photo-grid img{height:180px;border-radius:5px;object-fit:cover;width:100%}
-  .photo-about{width:100%;height:280px;border-radius:6px;object-fit:cover;box-shadow:var(--shadow)}
-  .photo-credit{font-size:.68rem;color:var(--muted);margin-top:6px;text-align:right}
-  .photo-credit a{color:var(--muted)}
-
-  /* signature report card */
-  .report{
-    background:var(--card);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);
-    padding:26px 28px;position:relative;
+  /* ============ 料金 ============ */
+  .plan-premium{
+    background:linear-gradient(135deg,#1d3049 0%,var(--indigo-night) 100%);
+    color:#f4efe4;border-radius:5px;padding:44px 46px;margin-bottom:26px;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+    border:1px solid rgba(194,166,98,.45);box-shadow:0 18px 50px rgba(23,42,65,.25);position:relative;overflow:hidden;
   }
-  .report::before{
-    content:"見本";position:absolute;top:16px;right:-8px;background:var(--indigo);color:#fff;
-    font-size:.62rem;letter-spacing:.15em;padding:4px 12px;font-weight:700;font-family:var(--sans)
+  .plan-premium::before{
+    content:"おすすめ";position:absolute;top:0;right:0;background:linear-gradient(135deg,#a8894e,#8b7040);
+    color:#fff;font-size:.74rem;font-weight:700;padding:7px 22px;letter-spacing:.18em;
   }
-  .report .rhead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:16px}
-  .report .rhead b{font-family:var(--serif);font-size:1.12rem;color:var(--indigo-deep)}
-  .report .rhead time{font-size:.78rem;color:var(--muted)}
-  .report .house{width:100%;height:118px;background:var(--green-soft);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  .checklist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;font-size:.86rem}
-  .checklist li{display:flex;align-items:center;gap:9px;color:#3a3f45}
-  .checklist li svg{flex:none}
-  .report .rfoot{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-  .tag{background:var(--green-soft);color:var(--green-deep);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:20px}
-
-  /* section scaffolding */
-  section{padding:84px 0}
-  .sec-head{max-width:40em;margin-bottom:46px}
-  .sec-head h2{font-size:clamp(1.55rem,3vw,2.15rem);color:var(--indigo-deep);margin-bottom:14px}
-  .sec-head p{color:var(--muted);font-size:1.02rem}
-  .band{background:var(--indigo-deep);color:#f4efe4}
-  .band .sec-head h2,.band h2,.band h3{color:#fff}
-  .band .sec-head p{color:#c3cdd8}
-
-  /* worries */
-  .worries{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .worry{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:26px 22px;text-align:center}
-  .worry .n{font-family:var(--serif);color:var(--green);font-size:.9rem;letter-spacing:.1em}
-  .worry p{margin-top:12px;font-weight:500;font-size:1.02rem;color:var(--ink);font-family:var(--serif)}
-
-  /* service table */
-  .svc{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start}
-  .svc-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-  .svc-table th,.svc-table td{text-align:left;padding:16px 18px;vertical-align:top;border-bottom:1px solid var(--line)}
-  .svc-table tr:last-child th,.svc-table tr:last-child td{border-bottom:none}
-  .svc-table th{width:104px;background:var(--green-soft);color:var(--green-deep);font-family:var(--serif);font-weight:600;font-size:.98rem}
-  .svc-table td{font-size:.92rem;color:#3a3f45}
-  .svc-note{background:var(--green-soft);border-radius:6px;padding:26px;font-size:.92rem}
-  .svc-note b{font-family:var(--serif);color:var(--indigo-deep);font-size:1.05rem;display:block;margin-bottom:10px}
-
-  /* souzoku highlight */
-  .souzoku-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-  .souzoku h2{font-size:clamp(1.7rem,3.2vw,2.4rem)}
-  .souzoku p{margin-top:18px;color:#dbe3ea}
-  .flow-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-  .flow-chips span{border:1px solid rgba(255,255,255,.28);border-radius:30px;padding:8px 16px;font-size:.84rem;color:#e6ebf0}
-  .flow-chips .hub{background:var(--green);border-color:var(--green);font-weight:700}
-  .partners{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:28px}
-  .partners li{list-style:none;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.94rem}
-  .partners li:last-child{border-bottom:none}
-  .partners li b{color:#fff;font-family:var(--serif)}
-  .partners li span{color:#c3cdd8;font-size:.86rem}
-
-  /* pricing */
-  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .plan{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:32px 26px;display:flex;flex-direction:column}
+  .plan-premium h3{font-family:var(--serif);font-size:1.55rem;color:#fdfbf5;margin-bottom:6px}
+  .plan-premium .who{font-size:.88rem;color:var(--kin-bright);font-weight:600;letter-spacing:.06em;margin-bottom:18px}
+  .plan-premium ul{list-style:none;font-size:.93rem;color:#d5dde5;columns:1}
+  .plan-premium ul li{padding:7px 0 7px 26px;position:relative}
+  .plan-premium ul li::before{content:"";position:absolute;left:2px;top:16px;width:8px;height:8px;border:1px solid var(--kin-bright);transform:rotate(45deg)}
+  .plan-premium .pp-price{text-align:center;border-left:1px solid rgba(244,239,228,.18);padding-left:40px}
+  .plan-premium .pp-price .yen{font-family:var(--serif);font-size:2.5rem;color:var(--kin-bright);line-height:1.3}
+  .plan-premium .pp-price small{font-size:.85rem;color:#b9c4d0;display:block;margin-top:4px}
+  .plan-premium .pp-price .btn{margin-top:22px}
+  .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:30px 26px;display:flex;flex-direction:column}
   .plan.feature{border:1.5px solid var(--green);position:relative}
-  .plan.feature::before{content:"契約者は初回無料";position:absolute;top:-12px;left:26px;background:var(--green);color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px}
-  .plan.premium{border:1.5px solid #8b7355;position:relative;background:linear-gradient(180deg,#fffdf6 0%,var(--card) 100%)}
-  .plan.premium::before{content:"資産価値の高い物件に";position:absolute;top:-12px;left:26px;background:#8b7355;color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px}
-  .plan h3{font-size:1.2rem;color:var(--indigo-deep)}
-  .plan .price{font-family:var(--serif);font-size:1.9rem;color:var(--green-deep);margin:14px 0 6px}
-  .plan .price small{font-size:.85rem;color:var(--muted);font-family:var(--sans);font-weight:500}
-  .plan ul{list-style:none;margin-top:16px;font-size:.9rem;color:#3a3f45}
-  .plan ul li{padding:7px 0 7px 24px;position:relative}
-  .plan ul li::before{content:"";position:absolute;left:0;top:14px;width:12px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
+  .plan.feature::before{content:"管理契約者は初回無料";position:absolute;top:-12px;left:22px;background:var(--green);color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px}
+  .plan h3{font-size:1.12rem;color:var(--indigo-deep)}
+  .plan .price{font-family:var(--serif);font-size:1.62rem;color:var(--green-deep);margin:14px 0 4px}
+  .plan .price small{font-size:.82rem;color:var(--muted);font-family:var(--sans);font-weight:500;white-space:nowrap}
+  .plan ul{list-style:none;margin-top:14px;font-size:.88rem;color:#3a3f45}
+  .plan ul li{padding:6px 0 6px 22px;position:relative}
+  .plan ul li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
   .price-note{margin-top:26px;font-size:.82rem;color:var(--muted)}
 
-  /* cost compare */
-  .cost{background:var(--green-soft);border-radius:8px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:10px}
-  .cost h3{font-size:1.5rem;color:var(--indigo-deep);margin-bottom:14px}
-  .cost p{color:#3a3f45;font-size:.95rem}
-  .cost-figures{text-align:center}
-  .cost-figures .big{font-family:var(--serif);font-size:2.6rem;color:var(--green-deep);line-height:1.2}
-  .cost-figures .vs{color:var(--muted);margin:6px 0;font-size:.85rem}
+  /* 放置リスク */
+  .risk{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--kin);border-radius:4px;padding:40px 44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:34px;box-shadow:var(--shadow)}
+  .risk h3{font-size:1.4rem;color:var(--indigo-deep);margin-bottom:14px}
+  .risk p{color:#3a3f45;font-size:.95rem}
+  .risk-figs{display:grid;gap:14px}
+  .risk-figs .rf{display:flex;align-items:baseline;justify-content:space-between;gap:14px;border-bottom:1px dashed var(--line);padding-bottom:12px}
+  .risk-figs .rf:last-child{border-bottom:none;padding-bottom:0}
+  .risk-figs .rf span{font-size:.88rem;color:var(--muted)}
+  .risk-figs .rf b{font-family:var(--serif);font-size:1.5rem;color:var(--kin);white-space:nowrap}
 
-  /* reasons */
-  .reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .reason{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px 24px}
-  .reason .rn{font-family:var(--serif);font-size:.85rem;color:var(--green);letter-spacing:.15em;display:block;margin-bottom:12px}
-  .reason h3{font-size:1.12rem;color:var(--indigo-deep);margin-bottom:10px;line-height:1.5}
-  .reason p{font-size:.9rem;color:#4a4f55}
+  /* ============ 出口（相続） ============ */
+  .souzoku-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .souzoku p{margin-top:18px;color:#c9d3dd}
+  .flow-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .flow-chips span{border:1px solid rgba(255,255,255,.28);border-radius:30px;padding:8px 18px;font-size:.84rem;color:#e6ebf0}
+  .flow-chips .hub{background:var(--kin);border-color:var(--kin);font-weight:700;color:#fff}
+  .partners{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:30px}
+  .partners li{list-style:none;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.94rem;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline}
+  .partners li:last-child{border-bottom:none}
+  .partners li .pn{font-family:var(--serif);color:var(--kin-bright);letter-spacing:.15em;font-size:.88rem}
+  .partners li b{color:#fff;font-family:var(--serif);display:block;margin-bottom:2px}
+  .partners li span{color:#b9c4d0;font-size:.86rem}
 
-  /* area */
-  .areas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  .area{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:5px;padding:28px}
-  .area h3{font-size:1.15rem;color:var(--indigo-deep);margin-bottom:6px}
-  .area .base{font-size:.8rem;color:var(--green-deep);font-weight:700;margin-bottom:12px}
-  .area p{font-size:.92rem;color:#4a4f55}
-
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:step}
-  .step{position:relative;padding-top:14px}
-  .step .sn{font-family:var(--serif);font-size:2.2rem;color:rgba(255,255,255,.22);line-height:1}
-  .step h3{font-size:1.05rem;color:#fff;margin:8px 0 8px}
-  .step p{font-size:.88rem;color:#c3cdd8}
-
-  /* about */
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  .about p{margin-bottom:16px;color:#3a3f45}
-  .about .sign{font-family:var(--serif);color:var(--indigo-deep);font-size:1.1rem;margin-top:8px}
-  .company{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:30px}
-  .company dl{display:grid;grid-template-columns:auto 1fr;gap:12px 20px;font-size:.9rem}
-  .company dt{color:var(--muted);font-weight:500}
+  /* ============ 代表 ============ */
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:start}
+  .about p{margin-bottom:18px;color:#3a3f45}
+  .about .sign{font-family:var(--serif);color:var(--indigo-deep);font-size:1.15rem;margin-top:24px}
+  .about .sign small{font-size:.8rem;color:var(--muted);font-family:var(--sans);display:block;margin-top:4px}
+  .quote{
+    font-family:var(--serif);font-size:1.3rem;color:var(--indigo-deep);line-height:2.1;
+    padding-left:24px;border-left:2px solid var(--kin);margin-bottom:28px;font-weight:500;
+  }
+  .cred-card{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
+  .cred-card .head{background:var(--indigo-deep);color:#fdfbf5;padding:18px 26px;font-family:var(--serif);font-size:1rem;letter-spacing:.08em}
+  .cred-card ul{list-style:none;padding:10px 26px}
+  .cred-card li{padding:14px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+  .cred-card li:last-child{border-bottom:none}
+  .cred-card li b{font-family:var(--serif);color:var(--indigo-deep);display:block;font-size:.98rem}
+  .cred-card li span{color:var(--muted);font-size:.82rem}
+  .cred-card li b em{font-style:normal;color:var(--kin)}
+  .company{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:26px}
+  .company dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;font-size:.88rem}
+  .company dt{color:var(--muted);font-weight:500;white-space:nowrap}
   .company dd{color:var(--ink)}
 
-  /* faq */
-  .faq details{background:var(--card);border:1px solid var(--line);border-radius:6px;margin-bottom:12px;overflow:hidden}
+  /* ============ エリア ============ */
+  .areas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .area{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:4px;padding:30px}
+  .area h3{font-size:1.15rem;color:var(--indigo-deep);margin-bottom:6px}
+  .area .base{font-size:.8rem;color:var(--green-deep);font-weight:700;margin-bottom:12px;letter-spacing:.04em}
+  .area p{font-size:.92rem;color:#4a4f55}
+
+  /* ============ 流れ ============ */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{position:relative;padding:26px 24px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:4px}
+  .step .sn{font-family:var(--serif);font-size:1rem;color:var(--kin-bright);letter-spacing:.25em}
+  .step h3{font-size:1.06rem;color:#fff;margin:10px 0 8px}
+  .step p{font-size:.87rem;color:#b9c4d0}
+
+  /* ============ FAQ ============ */
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:12px;overflow:hidden}
   .faq summary{cursor:pointer;padding:20px 24px;font-family:var(--serif);font-size:1.02rem;color:var(--indigo-deep);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"＋";color:var(--green);font-family:var(--sans);flex:none}
+  .faq summary::after{content:"＋";color:var(--kin);font-family:var(--sans);flex:none}
   .faq details[open] summary::after{content:"−"}
   .faq .fa{padding:0 24px 22px;font-size:.92rem;color:#4a4f55}
 
-  /* final cta */
-  .final{background:var(--indigo-deep);color:#fff;text-align:center;border-radius:10px;padding:64px 32px}
-  .final h2{color:#fff;font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:16px}
-  .final p{color:#c3cdd8;max-width:34em;margin:0 auto 30px}
-
-  /* footer */
-  footer{background:#181c22;color:#aeb4bb;padding:52px 0 30px;font-size:.86rem}
-  footer .fgrid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:34px}
-  footer .fbrand .mark{font-family:var(--serif);font-size:1.35rem;color:#fff;letter-spacing:.04em}
-  footer .fbrand p{margin-top:10px;max-width:24em;color:#8b9198;font-size:.82rem}
-  footer nav a{display:block;text-decoration:none;color:#aeb4bb;padding:5px 0}
-  footer nav a:hover{color:#fff}
-  footer .fbar{border-top:1px solid #2a2f36;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#6f757c;font-size:.78rem}
-  .ph{background:#fff6d6;color:#7a5b00;padding:1px 7px;border-radius:3px;font-size:.82em;font-weight:700}
-
-  .btn-line{display:inline-block;background:#06C755;color:#fff;font-family:var(--sans);font-weight:700;font-size:1rem;padding:14px 28px;border-radius:6px;text-decoration:none;margin-top:22px;transition:background .2s}
-  .btn-line:hover{background:#05a848}
-
-  /* contact form */
-  .contact-box{background:var(--indigo-deep);border-radius:10px;padding:52px;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
-  .contact-intro h2{color:#fff;font-size:clamp(1.5rem,2.8vw,2.1rem);margin-bottom:16px}
-  .contact-intro p{color:#c3cdd8;margin-bottom:22px}
+  /* ============ contact ============ */
+  .contact-box{background:linear-gradient(180deg,var(--indigo-deep),var(--indigo-night));border-radius:8px;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center;border:1px solid rgba(194,166,98,.3)}
+  .contact-intro h2{color:#fdfbf5;font-size:clamp(1.5rem,2.8vw,2.1rem);margin-bottom:18px}
+  .contact-intro p{color:#b9c4d0;margin-bottom:24px}
   .reassure{list-style:none}
-  .reassure li{display:flex;align-items:center;gap:10px;color:#e6ebf0;font-size:.9rem;padding:6px 0}
+  .reassure li{display:flex;align-items:center;gap:10px;color:#e6ebf0;font-size:.92rem;padding:7px 0}
   .reassure li svg{flex:none}
-  .contact-form{background:var(--card);border-radius:8px;padding:32px}
+  .btn-line{display:inline-block;background:#06C755;color:#fff;font-family:var(--sans);font-weight:700;font-size:1rem;padding:14px 28px;border-radius:6px;text-decoration:none;margin-top:24px;transition:background .2s}
+  .btn-line:hover{background:#05a848}
+  .contact-form{background:var(--card);border-radius:6px;padding:34px}
   .field{margin-bottom:16px}
   .field label{display:block;font-size:.82rem;font-weight:700;color:var(--indigo-deep);margin-bottom:6px}
-  .field label .req{color:var(--green-deep);font-size:.72rem;margin-left:6px}
+  .field label .req{color:var(--kin);font-size:.72rem;margin-left:6px}
   .field input,.field select,.field textarea{
     width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);
-    padding:12px 13px;border:1.5px solid var(--line);border-radius:4px;background:#fff;
+    padding:12px 13px;border:1.5px solid var(--line);border-radius:3px;background:#fff;
   }
   .field textarea{resize:vertical;min-height:92px}
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
@@ -271,40 +389,86 @@
   .contact-form .btn-primary{width:100%;border:none;color:#fff;font-size:1.05rem}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .form-note{font-size:.76rem;color:var(--muted);margin-top:12px;text-align:center}
-  .form-msg{display:none;padding:14px 16px;border-radius:5px;font-size:.9rem;margin-bottom:16px}
+  .form-msg{display:none;padding:14px 16px;border-radius:4px;font-size:.9rem;margin-bottom:16px}
   .form-msg.ok{background:var(--green-soft);color:var(--green-deep);border:1px solid var(--green)}
   .form-msg.err{background:#fdecec;color:#a23b3b;border:1px solid #e3a3a3}
   .form-msg.show{display:block}
   .form-done .contact-form>*:not(.form-msg){display:none}
 
+  /* footer */
+  footer{background:#12161c;color:#aeb4bb;padding:56px 0 32px;font-size:.86rem;position:relative;z-index:2}
+  footer .fgrid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:36px}
+  footer .fbrand .mark{font-family:var(--serif);font-size:1.35rem;color:#fff;letter-spacing:.06em}
+  footer .fbrand p{margin-top:10px;max-width:26em;color:#8b9198;font-size:.82rem}
+  footer nav a{display:block;text-decoration:none;color:#aeb4bb;padding:5px 0}
+  footer nav a:hover{color:#fff}
+  footer .fbar{border-top:1px solid #2a2f36;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#6f757c;font-size:.78rem}
+
   /* reveal */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-  /* responsive */
-  @media(max-width:900px){
-    .hero-grid,.svc,.souzoku-grid,.about-grid,.cost,.contact-box{grid-template-columns:1fr;gap:36px}
-    .contact-box{padding:32px 24px}
-    .worries,.reasons,.steps{grid-template-columns:1fr 1fr}
-    .plans{grid-template-columns:1fr}
+  /* ============ responsive ============ */
+  @media(max-width:960px){
+    .hero-inner{grid-template-columns:1fr;padding-top:72px;padding-bottom:80px}
+    .hero .tate{display:none}
+    .proof-grid{grid-template-columns:1fr 1fr}
+    .proof-item{border-left:none;border-top:1px solid var(--line)}
+    .proof-item:nth-child(-n+2){border-top:none}
+    .proof-item:nth-child(even){border-left:1px solid var(--line)}
+    .svc,.souzoku-grid,.about-grid,.premium-grid,.contact-box,.risk{grid-template-columns:1fr;gap:36px}
+    .contact-box{padding:36px 26px}
+    .worries{grid-template-columns:1fr 1fr}
+    .plans{grid-template-columns:1fr 1fr}
+    .plan-premium{grid-template-columns:1fr;padding:34px 28px}
+    .plan-premium .pp-price{border-left:none;border-top:1px solid rgba(244,239,228,.18);padding:26px 0 0}
+    .steps{grid-template-columns:1fr 1fr}
     .areas{grid-template-columns:1fr}
+    .compare-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .compare{min-width:640px}
     .navlinks{
-      position:fixed;inset:70px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;
-      border-bottom:1px solid var(--line);padding:8px 0;display:none;box-shadow:var(--shadow)
+      position:fixed;inset:72px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;
+      border-bottom:1px solid var(--line);padding:8px 0;display:none;box-shadow:var(--shadow);z-index:60;
     }
     .navlinks.open{display:flex}
     .navlinks li{width:100%;text-align:center;border-bottom:1px solid var(--line)}
-    .navlinks li:last-child{border-bottom:none}
+    .navlinks li:last-child{border-bottom:none;padding:10px}
     .navlinks a{display:block;padding:15px}
-    .navlinks li:last-child{padding:10px}
     .navtoggle{display:flex}
+    .brand .cred{display:none}
+  }
+  /* 比較表：スマホでは縦積みに変換（家守列が隠れないように） */
+  @media(max-width:700px){
+    .compare{min-width:0}
+    .compare thead{display:none}
+    .compare tbody tr{display:block}
+    .compare tbody tr+tr{border-top:6px solid var(--paper)}
+    .compare tbody th{display:block;width:auto;background:var(--indigo-deep);color:#fff;font-size:.92rem;padding:12px 20px;border-bottom:none}
+    .compare td{display:block;text-align:left;padding:13px 20px}
+    .compare td::before{display:block;font-size:.7rem;font-weight:700;letter-spacing:.1em;margin-bottom:3px;font-family:var(--sans)}
+    .compare td.them{border-bottom:1px dashed var(--line)}
+    .compare td.them::before{content:"一般的な巡回サービス";color:var(--muted)}
+    .compare td.us::before{content:"家守（いえもり）";color:var(--kin)}
+    .maru{font-size:1.02rem}
   }
   @media(max-width:560px){
-    .worries,.reasons,.steps{grid-template-columns:1fr}
-    section{padding:60px 0}
-    .cost,.final{padding:36px 22px}
-    .checklist{grid-template-columns:1fr}
+    .worries,.plans,.steps{grid-template-columns:1fr}
+    .plan-premium .pp-price .yen{font-size:1.9rem;white-space:nowrap}
+    .premium-price .yen{font-size:1.9rem;white-space:nowrap}
+    .field-row{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .risk{padding:28px 22px}
+    .premium-sec::after{font-size:14rem;right:-40px}
+    .hero h1{font-size:1.72rem}
+    .worries-close{font-size:1.1rem}
+    .sec-head h2{font-size:1.45rem}
+    .hero p.lead{font-size:.98rem}
+    .cred-row span{padding-right:0;margin-right:18px;font-size:.8rem}
+    .pdf-card{padding:26px 22px}
+    .proof-grid{grid-template-columns:1fr}
+    .proof-item{border-left:none!important;border-top:1px solid var(--line)}
+    .proof-item:first-child{border-top:none}
   }
 </style>
 </head>
@@ -314,14 +478,14 @@
   <div class="wrap nav">
     <a class="brand" href="#top">
       <span class="mark">家守<small>いえもり</small></span>
-      <span style="font-size:.68rem;color:var(--green-deep);font-family:var(--sans);font-weight:600;background:var(--green-soft);padding:3px 10px;border-radius:14px;margin-left:10px">東京城南／埼玉比企</span>
+      <span class="cred">国家資格・中小企業診断士の資産管理</span>
     </a>
     <ul class="navlinks" id="menu">
       <li><a href="#worries">お悩み</a></li>
-      <li><a href="#service">サービス</a></li>
-      <li><a href="#souzoku">相続対応</a></li>
+      <li><a href="#difference">家守の違い</a></li>
+      <li><a href="#premium">プレミアム</a></li>
       <li><a href="#price">料金</a></li>
-      <li><a href="#area">対応エリア</a></li>
+      <li><a href="#about">代表について</a></li>
       <li><a href="#faq">よくある質問</a></li>
       <li><a class="btn btn-primary" href="#contact">無料で相談する</a></li>
     </ul>
@@ -333,144 +497,275 @@
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="reveal">
-        <span class="eyebrow eyebrow-hero">東京・城南 ／ 埼玉・比企エリア 対応</span>
-        <h1>誰も住まない実家を、<br><span class="accent">家族に代わって</span>見守ります。</h1>
-        <p class="lead">相続した空き家や遠方のご実家、法人の遊休物件を、地元に暮らす担当者が毎月巡回し、写真付きでご報告。中小企業診断士が窓口となり、「見守り」だけでなく<strong>売る・貸す・活かす</strong>という“その先”のご相談まで、まとめてお引き受けします。資産価値の高い物件には、代表が直接対応するプレミアムプランもご用意しています。</p>
+  <!-- ============ HERO ============ -->
+  <section class="hero" style="padding:0">
+    <div class="bg" role="img" aria-label="手入れされた日本家屋の外観"></div>
+    <div class="veil"></div>
+    <div class="wrap hero-inner">
+      <div>
+        <span class="hero-badge">東京・城南 ／ 埼玉・比企エリア　相続不動産の見守り管理</span>
+        <h1>受け継いだ家は、<br>ご家族の<span class="kin">大切な資産</span>です。</h1>
+        <p class="lead">相続した家・空き家を、単なる「見回り」で終わらせません。国家資格・中小企業診断士である代表が窓口となり、毎月の見守りから、売却・賃貸・活用という資産の出口まで。税理士・司法書士と連携し、あなたの資産価値を守り抜きます。</p>
         <div class="hero-cta">
-          <a class="btn btn-primary btn-lg" href="#contact">無料で相談する</a>
-          <a class="btn btn-ghost btn-lg" href="#price">料金プランを見る</a>
+          <a class="btn btn-kin btn-lg" href="#contact">無料で相談する</a>
+          <a class="btn btn-ghost-light btn-lg" href="#premium">資産管理プレミアムを見る</a>
         </div>
-        <div class="trust-row">
-          <span>相続・活用の相談まで対応</span>
-          <span>写真つきレポート</span>
+        <div class="cred-row">
+          <span>国家資格・中小企業診断士</span>
+          <span>認定経営革新等支援機関</span>
+          <span>代表が直接対応</span>
           <span>賠償責任保険 加入</span>
         </div>
       </div>
+      <div class="tate">家を守り、資産を守る。</div>
+    </div>
+  </section>
 
-      <!-- hero right: photo + report card -->
-      <div>
-        <img src="hero.jpeg" alt="手入れされた一軒家の外観" class="photo photo-hero reveal" loading="lazy">
-
-        <!-- LINE風 見守りレポート -->
-        <div class="line-mock reveal" style="margin-top:22px">
-          <div class="line-header">
-            <span class="line-back">＜</span>
-            <span class="line-name">家守（いえもり）</span>
-            <span class="line-icons">≡</span>
-          </div>
-          <div class="line-body">
-            <div class="line-date">8月10日（日）</div>
-            <div class="line-row">
-              <div class="line-avatar">家</div>
-              <div>
-                <div class="line-bubble">○○様　お世話になっております。本日、8月の巡回を実施いたしましたのでご報告します。</div>
-                <div class="line-bubble">【巡回結果】<br>✅ 換気・通風：実施済み<br>✅ 水道の通水：異常なし<br>✅ 戸締まり：全箇所施錠確認<br>✅ 外観：異常なし<br>✅ 郵便物：チラシ3通を処分<br>✅ 雨漏り：なし</div>
-                <div class="line-photos" style="grid-template-columns:1fr 1fr 1fr">
-                  <div class="line-photo-img"><img src="report-exterior.jpeg" alt="外観"><span>外観</span></div>
-                  <div class="line-photo-img"><img src="report-interior.jpeg" alt="室内"><span>室内</span></div>
-                  <div class="line-photo-img"><img src="report-water.jpeg" alt="水回り"><span>水回り</span></div>
-                </div>
-                <div class="line-bubble">特に気になる点はございませんでした。庭の草がやや伸びてきておりますので、次回ご希望があれば草刈りも対応いたします。</div>
-                <div class="line-time">10:32</div>
-              </div>
-            </div>
-            <div class="line-row line-row-right">
-              <div>
-                <div class="line-bubble line-bubble-green">ありがとうございます！写真も確認しました。草刈り、次回お願いします。</div>
-                <div class="line-time" style="text-align:right">10:45 既読</div>
-              </div>
-            </div>
-          </div>
-          <div class="line-label">見本</div>
+  <!-- ============ 信頼の根拠 ============ -->
+  <div class="proof">
+    <div class="wrap">
+      <div class="proof-grid">
+        <div class="proof-item">
+          <div class="t"><b>国家資格</b>保有者が窓口</div>
+          <div class="d">経済産業大臣登録の国家資格「中小企業診断士」である代表が、ご相談から直接担当します。</div>
+        </div>
+        <div class="proof-item">
+          <div class="t">国が認定した<b>支援機関</b></div>
+          <div class="d">認定経営革新等支援機関として、補助金申請などの公的支援の実績が多数あります。</div>
+        </div>
+        <div class="proof-item">
+          <div class="t">税理士・司法書士と<b>連携</b></div>
+          <div class="d">相続税・登記・売買まで、専門家チームへ窓口ひとつでつながります。</div>
+        </div>
+        <div class="proof-item">
+          <div class="t">万一に備える<b>賠償保険</b></div>
+          <div class="d">賠償責任保険に加入。大切なお住まいだからこその備えです。</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- ============ お悩み ============ -->
   <section id="worries">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">こんなお悩みはありませんか</span>
-        <h2>使わなくなった家は、その間にも傷んでいきます。</h2>
-        <p>放置された空き家は劣化が早く、「特定空家」に指定されると固定資産税の軽減が外れ、行政指導の対象にもなります。</p>
+        <div class="kicker"><span class="no">一</span><span class="bar"></span><span class="label">こんなお悩みはありませんか</span></div>
+        <h2>「どうするか」を決める前に、<br>家は傷んでいきます。</h2>
+        <p>放置された家は劣化が早く、「特定空家」に指定されると土地の固定資産税の軽減が外れ、行政指導の対象にもなります。資産価値は、待ってくれません。</p>
       </div>
       <div class="worries reveal">
-        <div class="worry"><span class="n">01</span><p>相続した実家が、<br>空き家のまま</p></div>
-        <div class="worry"><span class="n">02</span><p>遠方で、<br>なかなか通えない</p></div>
-        <div class="worry"><span class="n">03</span><p>親が施設に入り、<br>家が空いた</p></div>
-        <div class="worry"><span class="n">04</span><p>売るか貸すか、<br>決めきれない</p></div>
-        <div class="worry"><span class="n">05</span><p>法人の遊休物件、<br>管理が手薄</p></div>
-        <div class="worry"><span class="n">06</span><p>資産価値の高い物件、<br>信頼できる先に任せたい</p></div>
+        <div class="worry"><span class="n">壱</span><p>相続した実家を、<br>売るか貸すか決めかねている</p><small>方針が決まるまでの間も、家は静かに傷んでいきます。</small></div>
+        <div class="worry"><span class="n">弐</span><p>資産価値を<br>落としたくない</p><small>雨漏りやカビの放置は、査定額に直接響きます。</small></div>
+        <div class="worry"><span class="n">参</span><p>信頼して任せられる先が<br>見つからない</p><small>安さだけの業者に、大切な家の鍵は渡せない。</small></div>
+        <div class="worry"><span class="n">四</span><p>遠方に住んでいて、<br>なかなか通えない</p><small>台風のあと、気になっても駆けつけられない。</small></div>
+        <div class="worry"><span class="n">五</span><p>相続税・登記・売却も<br>まとめて相談したい</p><small>税理士、司法書士、不動産会社…窓口を分けたくない。</small></div>
+        <div class="worry"><span class="n">六</span><p>複数の物件・法人物件の<br>管理が手薄になっている</p><small>ご自宅、ご実家、社有物件。まとめて任せたい。</small></div>
+      </div>
+      <p class="worries-close reveal">その家に必要なのは「見回り」ではなく、<br><b>資産として守り、活かす管理</b>です。</p>
+    </div>
+  </section>
+
+  <!-- ============ 家守の違い（比較表） ============ -->
+  <section id="difference" style="background:#faf6ec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker"><span class="no">二</span><span class="bar"></span><span class="label">家守の違い</span></div>
+        <h2>「巡回業者」と「資産の相談相手」。<br>その違いを、ご覧ください。</h2>
+        <p>空き家の巡回サービスは数多くあります。家守が選ばれるのは、巡回の先にある「資産の判断」まで任せられるからです。</p>
+      </div>
+      <div class="compare-scroll reveal">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th style="background:transparent;border-bottom:1px solid var(--line)"></th>
+              <th class="them">一般的な空き家巡回サービス</th>
+              <th class="us">家守（いえもり）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>窓口・責任者</th>
+              <td class="them"><span class="batsu">アルバイト・委託スタッフが担当することも</span></td>
+              <td class="us"><span class="maru">国家資格・中小企業診断士の代表が窓口</span>実際の巡回は地縁のある担当者が実施</td>
+            </tr>
+            <tr>
+              <th>報告の質</th>
+              <td class="them"><span class="batsu">チェックリストのみの簡易報告</span></td>
+              <td class="us"><span class="maru">写真つきLINE報告＋<b>所見つき月次レポート</b></span>プレミアムは資産状況の所見まで（PDF）</td>
+            </tr>
+            <tr>
+              <th>相続・税の相談</th>
+              <td class="them"><span class="batsu">対象外（別の専門家を自分で探す）</span></td>
+              <td class="us"><span class="maru">税理士・司法書士と連携し窓口ひとつ</span></td>
+            </tr>
+            <tr>
+              <th>売却・賃貸・活用の出口</th>
+              <td class="them"><span class="batsu">巡回のみで、出口の提案はなし</span></td>
+              <td class="us"><span class="maru">出口戦略までコーディネート</span>売る・貸す・活かす・解体を中立の立場で</td>
+            </tr>
+            <tr>
+              <th>補助金・助成金</th>
+              <td class="them"><span class="batsu">対応なし</span></td>
+              <td class="us"><span class="maru">国の認定支援機関として申請まで支援</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- SERVICE -->
-  <section id="service" style="background:#faf6ec">
+  <!-- ============ プレミアム（主役） ============ -->
+  <section id="premium" class="band premium-sec">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">見守りの内容</span>
-        <h2>毎月の巡回で、家の“今”を確かめます。</h2>
-        <p>毎回、下記の項目を確認し、写真付きの報告書をお届けします。異常があればその都度ご連絡します。</p>
+        <div class="kicker"><span class="no">三</span><span class="bar"></span><span class="label">資産管理プレミアム</span></div>
+        <h2>大切な資産には、<br>それにふさわしい管理を。</h2>
+        <p>資産価値の高いお住まい・ご実家のための、家守の最上位プラン。代表がお客様専任の窓口となり、「資産の主治医」として伴走します。</p>
       </div>
-      <div class="svc">
-        <table class="svc-table reveal">
-          <tr><th>外観</th><td>外壁・屋根の異常、不法侵入の形跡、ポスト・郵便物の確認、雑草の繁茂状況</td></tr>
-          <tr><th>室内</th><td>通風・換気の実施、カビ・異臭の確認、雨漏り・水漏れの痕跡、全窓・扉の施錠確認</td></tr>
-          <tr><th>設備</th><td>水道の通水確認、電気ブレーカーの状態、ガス元栓の閉栓確認</td></tr>
-          <tr><th>庭・外周<br><small style="font-weight:400;color:var(--muted)">オプション</small></th><td>草刈り・除草、庭木の手入れ、高圧洗浄などの特別清掃</td></tr>
-        </table>
-        <div class="svc-note reveal">
-          <b>行かなくても、家の様子がわかる。</b>
-          巡回のたびに、写真つきの報告書をLINEまたはメールでお送りします。遠くにお住まいでも、スマホひとつで実家の状態を確認できます。気になる点があれば、写真とあわせてすぐにご連絡します。
-          <div class="photo-grid">
-            <img src="ventilation.jpeg" alt="窓を開けて換気する様子" loading="lazy">
-            <img src="key.jpeg" alt="鍵の受け渡しイメージ" loading="lazy">
+      <div class="premium-grid">
+        <div class="reveal">
+          <ul class="p-deliver">
+            <li><span class="pn">其の一</span><div><b>代表（中小企業診断士）が直接対応</b><p>ご契約からご報告、ご相談まで、国家資格を持つ代表がお客様専任の窓口に。担当者任せにしません。</p></div></li>
+            <li><span class="pn">其の二</span><div><b>所見つき月次レポート（PDF）</b><p>巡回結果に加え、建物の状態変化と対処の優先順位を、資産保全の視点で毎月書面にまとめます。</p></div></li>
+            <li><span class="pn">其の三</span><div><b>四半期ごとの面談</b><p>3ヶ月に一度、資産の状況と今後の方針をじっくりご相談。売る・貸す・活かすの判断を、焦らず確かに進められます。</p></div></li>
+            <li><span class="pn">其の四</span><div><b>士業連携＋補助金申請の支援</b><p>相続税は税理士、登記は司法書士へ。活用に使える補助金・助成金は、調査から申請までお手伝いします。</p></div></li>
+            <li><span class="pn">其の五</span><div><b>複数物件の一括管理</b><p>ご自宅・ご実家・別宅・法人物件。複数の資産を、ひとつの窓口でまとめて見守ります。</p></div></li>
+          </ul>
+          <div class="premium-price">
+            <span class="yen">月額 33,000円〜<small>（税込）</small></span>
+            <span class="note">※ 物件の規模・状態によりお見積もりします</span>
+          </div>
+          <div style="margin-top:26px">
+            <a class="btn btn-kin btn-lg" href="#contact">プレミアムについて相談する</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="pdf-card">
+            <span class="ph-label">見本</span>
+            <div class="rhead">
+              <b><span class="sub2">ASSET REPORT ─ 月次資産管理レポート</span>世田谷区・戸建（木造二階建）</b>
+              <time>2026年6月度</time>
+            </div>
+            <ul class="pdf-rows">
+              <li><span>外観・屋根・外壁</span><span class="good">異常なし</span></li>
+              <li><span>室内・雨漏り・カビ</span><span class="good">異常なし</span></li>
+              <li><span>通水・電気・ガス元栓</span><span class="good">実施・確認済</span></li>
+              <li><span>庭木・外周</span><span>要観察（下記所見）</span></li>
+            </ul>
+            <div class="pdf-view">
+              <b>今月の所見</b>
+              南側の庭木が越境しつつあります。夏前の剪定を推奨します（概算2〜3万円）。建物本体は良好で、現状の資産価値を維持できています。売却相場は前四半期から横ばいです。
+            </div>
+            <div class="pdf-foot">
+              <div class="who"><b>家守（いえもり）</b>担当：代表取締役　吉野 一哉<br>中小企業診断士（経済産業大臣登録）</div>
+              <div class="hanko">守</div>
+            </div>
+          </div>
+          <div class="premium-for">
+            <b>こんな方のためのプランです</b>
+            <ul>
+              <li>資産価値の高いお住まい・ご実家を相続された方</li>
+              <li>管理だけでなく、資産としての判断も相談したい方</li>
+              <li>複数の物件・法人物件をまとめて任せたい方</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOUZOKU (differentiator) -->
-  <section id="souzoku" class="band souzoku">
-    <div class="wrap souzoku-grid">
-      <div class="reveal">
-        <span class="eyebrow" style="color:#9ec0a2">家守が選ばれる、いちばんの理由</span>
-        <h2>「管理」で終わらせない。<br>相続の“その先”まで。</h2>
-        <p>空き家の多くは、相続から始まります。家守は、中小企業診断士である代表が窓口となり、税理士・司法書士・不動産会社に加え、<strong style="color:#fff">大田区をはじめとする自治体の空き家窓口</strong>とも連携。放置のリスクを避けながら、<strong style="color:#fff">売却・賃貸・解体・活用</strong>という出口まで、窓口ひとつでご相談いただけます。さらに、空き家の改修・活用に使える<strong style="color:#fff">補助金・助成金は、申請そのものをお手伝い</strong>。国の認定を受けた経営支援の専門機関（認定経営革新等支援機関）として多数の申請を支援してきた実績があり、空き家活用に使える補助金や公的制度についても、調査から申請まで一貫してお手伝いします。</p>
-        <p style="color:#9ec0a2;font-size:.9rem">「見守りながら、ゆっくり方針を決める」——それができるのが、家守の強みです。管理契約中の方は、初回のご相談を無料で承ります。</p>
-        <div class="flow-chips">
-          <span class="hub">家守が窓口</span>
-          <span>税理士（相続税）</span>
-          <span>司法書士（登記）</span>
-          <span>不動産会社（売買・賃貸）</span>
-          <span>自治体（空き家バンク・補助金）</span>
-          <span>解体・リフォーム</span>
-        </div>
+  <!-- ============ サービス内容 ============ -->
+  <section id="service">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker"><span class="no">四</span><span class="bar"></span><span class="label">毎月の見守り</span></div>
+        <h2>毎月の巡回で、<br>家の「今」を確かめます。</h2>
+        <p>全プラン共通で、毎回下記の項目を確認し、写真つきでご報告します。異常があればその都度ご連絡し、対処までご相談いただけます。</p>
       </div>
-      <div class="partners reveal">
-        <ul>
-          <li><b>まず、見守る</b><br><span>毎月の巡回で家を維持し、判断の時間を確保</span></li>
-          <li><b>次に、整理する</b><br><span>相続・名義・税の論点を専門家と一緒に把握</span></li>
-          <li><b>そして、決める</b><br><span>売る／貸す／活かす／解体——出口をコーディネート</span></li>
-        </ul>
+      <div class="svc">
+        <div class="reveal">
+          <table class="svc-table">
+            <tr><th>外観</th><td>外壁・屋根の異常、不法侵入の形跡、ポスト・郵便物の確認、雑草の繁茂状況</td></tr>
+            <tr><th>室内</th><td>通風・換気の実施、カビ・異臭の確認、雨漏り・水漏れの痕跡、全窓・扉の施錠確認</td></tr>
+            <tr><th>設備</th><td>水道の通水確認、電気ブレーカーの状態、ガス元栓の閉栓確認</td></tr>
+            <tr><th>庭・外周<br><small style="font-weight:400;color:var(--muted)">オプション</small></th><td>草刈り・除草、庭木の手入れ、高圧洗浄などの特別清掃</td></tr>
+          </table>
+          <div class="svc-note" style="margin-top:22px">
+            <b>行かなくても、家の様子がわかる。</b>
+            巡回のたびに、写真つきの報告をLINEまたはメールでお送りします。遠くにお住まいでも、スマホひとつでご実家の状態を確認できます。
+            <div class="photo-grid">
+              <img src="ventilation.jpeg" alt="窓を開けて換気する様子" loading="lazy">
+              <img src="key.jpeg" alt="鍵の受け渡しイメージ" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="line-mock">
+            <div class="line-header">
+              <span class="line-back">＜</span>
+              <span class="line-name">家守（いえもり）</span>
+              <span class="line-icons">≡</span>
+            </div>
+            <div class="line-body">
+              <div class="line-date">6月10日（水）</div>
+              <div class="line-row">
+                <div class="line-avatar">家</div>
+                <div>
+                  <div class="line-bubble">○○様　お世話になっております。本日、6月の巡回を実施いたしましたのでご報告します。</div>
+                  <div class="line-bubble">【巡回結果】<br>✅ 換気・通風：実施済み<br>✅ 水道の通水：異常なし<br>✅ 戸締まり：全箇所施錠確認<br>✅ 外観：異常なし<br>✅ 郵便物：チラシ3通を処分<br>✅ 雨漏り：なし</div>
+                  <div class="line-photos" style="grid-template-columns:1fr 1fr 1fr">
+                    <div class="line-photo-img"><img src="report-exterior.jpeg" alt="外観" loading="lazy"><span>外観</span></div>
+                    <div class="line-photo-img"><img src="report-interior.jpeg" alt="室内" loading="lazy"><span>室内</span></div>
+                    <div class="line-photo-img"><img src="report-water.jpeg" alt="水回り" loading="lazy"><span>水回り</span></div>
+                  </div>
+                  <div class="line-bubble">特に気になる点はございませんでした。庭の草がやや伸びてきておりますので、次回ご希望があれば草刈りも対応いたします。</div>
+                  <div class="line-time">10:32</div>
+                </div>
+              </div>
+              <div class="line-row line-row-right">
+                <div>
+                  <div class="line-bubble line-bubble-green">ありがとうございます！写真も確認しました。草刈り、次回お願いします。</div>
+                  <div class="line-time" style="text-align:right">10:45 既読</div>
+                </div>
+              </div>
+            </div>
+            <div class="line-label">見本</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICE -->
-  <section id="price">
+  <!-- ============ 料金 ============ -->
+  <section id="price" style="background:#faf6ec">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">料金プラン</span>
+        <div class="kicker"><span class="no">五</span><span class="bar"></span><span class="label">料金プラン</span></div>
         <h2>わかりやすい、月額の見守り料金。</h2>
-        <p>物件の広さ・状態・エリアにより変動します。追加請求はありません。まずは無料でお見積もりします。</p>
+        <p>物件の広さ・状態・エリアによりお見積もりします。ご契約後の追加請求はありません。</p>
       </div>
-      <div class="plans" style="grid-template-columns:repeat(5,1fr)">
+
+      <div class="plan-premium reveal">
+        <div>
+          <h3>資産管理プレミアム</h3>
+          <div class="who">資産価値の高い物件・複数物件をお持ちの方に</div>
+          <ul>
+            <li>代表（国家資格・中小企業診断士）が直接対応</li>
+            <li>所見つき月次レポート（PDF）</li>
+            <li>四半期ごとの面談で、資産の方針を一緒に</li>
+            <li>相続・売却・活用の出口相談／士業連携</li>
+            <li>補助金・助成金の申請支援</li>
+            <li>複数物件の一括管理</li>
+          </ul>
+        </div>
+        <div class="pp-price">
+          <div class="yen">月額 33,000円〜</div>
+          <small>税込・お見積もりにて確定</small>
+          <a class="btn btn-kin" href="#contact">相談してみる</a>
+        </div>
+      </div>
+
+      <div class="plans">
         <div class="plan reveal">
           <h3>見守りライト</h3>
           <div class="price">月額 9,900円〜 <small>税込</small></div>
@@ -478,7 +773,7 @@
             <li>月1回の巡回</li>
             <li>換気・通風・通水</li>
             <li>郵便物の確認</li>
-            <li>写真つき報告書</li>
+            <li>写真つき報告</li>
           </ul>
         </div>
         <div class="plan reveal">
@@ -489,18 +784,6 @@
             <li>ライトの内容すべて</li>
             <li>室内の簡易清掃</li>
             <li>緊急時の一次対応</li>
-          </ul>
-        </div>
-        <div class="plan premium reveal">
-          <h3>資産管理プレミアム</h3>
-          <div class="price">月額 33,000円〜 <small>税込</small></div>
-          <ul>
-            <li>代表が直接対応</li>
-            <li>月次レポート（PDF＋所見）</li>
-            <li>四半期ごとの面談</li>
-            <li>相続・活用の出口相談</li>
-            <li>士業連携＋補助金申請支援</li>
-            <li>複数物件の一括管理</li>
           </ul>
         </div>
         <div class="plan reveal">
@@ -519,51 +802,99 @@
           <ul>
             <li>相続後の出口を整理</li>
             <li>税・登記・売買を士業連携</li>
-            <li>活用の補助金・助成金の申請支援</li>
+            <li>補助金・助成金の申請支援</li>
             <li>特定空家リスクの回避</li>
           </ul>
         </div>
       </div>
       <p class="price-note">※ 記載価格は目安です。料金は物件の広さ・状態・エリアにより変動します。緊急時の現地確認・業者への連絡代行は月額内で対応、長時間の立ち合いや実作業は別途ご相談となります。</p>
 
-      <div class="cost reveal">
+      <div class="risk reveal">
         <div>
-          <h3>帰省1回分の交通費で、<br>1ヶ月の見守りを。</h3>
-          <p>行けるのは年に数回でも、台風・水漏れ・不法侵入は待ってくれません。往復の交通費を一度使うより、毎月見守る安心のほうが、多くの場合お得です。</p>
+          <h3>管理費は、資産を守るための備えです。</h3>
+          <p>「特定空家」に指定されると、土地の固定資産税の軽減特例が外れ、税負担が大きく増えることがあります。雨漏りやカビを放置すれば、修繕費と査定額への影響はさらに大きくなります。毎月の見守りは、資産価値の目減りを防ぐ、もっとも確実な備えです。</p>
         </div>
-        <div class="cost-figures">
-          <div class="big">10,000〜30,000円</div>
-          <div class="vs">帰省1回の交通費（往復）＝</div>
-          <div class="big">約1〜3ヶ月分</div>
-          <div class="vs">の見守り料金に相当</div>
+        <div class="risk-figs">
+          <div class="rf"><span>特定空家指定で、土地の固定資産税は</span><b>最大約6倍</b></div>
+          <div class="rf"><span>雨漏り放置による大規模修繕は</span><b>数百万円規模</b></div>
+          <div class="rf"><span>毎月の見守り管理なら</span><b>月額9,900円〜</b></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REASONS -->
-  <section id="reasons" style="background:#faf6ec">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">選ばれる理由</span>
-        <h2>大手にも、個人業者にもない安心。</h2>
+  <!-- ============ 出口（相続のその先） ============ -->
+  <section id="souzoku" class="band">
+    <div class="wrap souzoku-grid">
+      <div class="reveal">
+        <div class="kicker"><span class="no">六</span><span class="bar"></span><span class="label">相続の、その先まで</span></div>
+        <h2 style="font-size:clamp(1.7rem,3.2vw,2.3rem)">「管理」で終わらせない。<br>出口まで、窓口ひとつ。</h2>
+        <p>空き家の多くは、相続から始まります。家守は、中小企業診断士である代表が窓口となり、税理士・司法書士・不動産会社に加え、<strong style="color:#fff">大田区をはじめとする自治体の空き家窓口</strong>とも連携。<strong style="color:#fff">売却・賃貸・解体・活用</strong>という出口まで、まとめてご相談いただけます。空き家の改修・活用に使える<strong style="color:#fff">補助金・助成金は、申請そのものをお手伝い</strong>。国の認定を受けた支援機関としての実績が、ここで活きます。</p>
+        <p style="color:#a9c4ad;font-size:.9rem">「見守りながら、ゆっくり方針を決める」——それができるのが、家守の強みです。管理契約中の方は、初回のご相談を無料で承ります。</p>
+        <div class="flow-chips">
+          <span class="hub">家守が窓口</span>
+          <span>税理士（相続税）</span>
+          <span>司法書士（登記）</span>
+          <span>不動産会社（売買・賃貸）</span>
+          <span>自治体（空き家バンク・補助金）</span>
+          <span>解体・リフォーム</span>
+        </div>
       </div>
-      <div class="reasons">
-        <div class="reason reveal"><span class="rn">01</span><h3>相続に強い、<br>中小企業診断士が窓口</h3><p>単なる見回りに留まらず、相続後の判断まで士業と連携してご相談に応じます。</p></div>
-        <div class="reason reveal"><span class="rn">02</span><h3>地縁のある担当者が、<br>直接うかがう</h3><p>東京（城南）と埼玉（比企）の二拠点。その土地に縁のある担当者が対応し、ご依頼者の“東京の家”と“田舎の実家”を、まとめて見守れます。</p></div>
-        <div class="reason reveal"><span class="rn">03</span><h3>写真つき・LINE報告</h3><p>現地に行かなくても、家の状態がその日のうちにわかります。</p></div>
-        <div class="reason reveal"><span class="rn">04</span><h3>明朗会計・追加請求なし</h3><p>契約前に作業範囲と料金を明示。あとから費用が膨らむことはありません。</p></div>
-        <div class="reason reveal"><span class="rn">05</span><h3>賠償責任保険に加入</h3><p>万一、作業中に物を破損した場合にも備えています。</p></div>
-        <div class="reason reveal"><span class="rn">06</span><h3>行政連携＋<br>補助金の申請支援</h3><p>大田区など各自治体の空き家窓口・空き家バンクへおつなぎし、活用に使える補助金・助成金は申請までサポート。認定支援機関・中小企業診断士としての支援実績が強みです。</p></div>
+      <div class="partners reveal">
+        <ul>
+          <li><span class="pn">一</span><div><b>まず、見守る</b><span>毎月の巡回で資産を維持し、判断の時間を確保します。</span></div></li>
+          <li><span class="pn">二</span><div><b>次に、整理する</b><span>相続・名義・税の論点を、専門家と一緒に把握します。</span></div></li>
+          <li><span class="pn">三</span><div><b>そして、決める</b><span>売る／貸す／活かす／解体——最適な出口をコーディネートします。</span></div></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- AREA -->
-  <section id="area">
+  <!-- ============ 代表 ============ -->
+  <section id="about">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">対応エリア</span>
+        <div class="kicker"><span class="no">七</span><span class="bar"></span><span class="label">代表について</span></div>
+        <h2>顔の見える専門家が、<br>あなたの資産の窓口です。</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about reveal">
+          <!-- 顔写真(profile.jpeg)が用意できたらここに追加 -->
+          <p class="quote">大切な家を任せる相手は、<br>「誰なのか」が見えるべきだと思うのです。</p>
+          <p>私自身、埼玉に父方の実家があり、東京と行き来する生活のなかで、「離れた家をどう守るか」という問いに向き合ってきました。いずれ売るのか、貸すのか、残すのか——答えを出すには時間がかかります。でも、その間にも家は傷んでいく。<strong>まず家を守りながら、じっくり方針を決められる仕組み</strong>が必要だと感じたのが、家守の出発点です。</p>
+          <p>だから家守は、毎月の見守りと同時に、相続・税・売却といった「その先」まで一緒に考えます。経営と資産の分析を本業としてきた中小企業診断士として、感覚ではなく、数字と根拠でご提案します。実際に家へうかがうのは、その地域に暮らし、土地に縁のある担当者。だれかの大切なご実家を、我が事と同じ気持ちで見守ります。</p>
+          <p class="sign">株式会社ネクストアップ　代表取締役　吉野 一哉<small>中小企業診断士（経済産業大臣登録）／認定経営革新等支援機関</small></p>
+        </div>
+        <div class="reveal">
+          <div class="cred-card">
+            <div class="head">代表の信頼の根拠</div>
+            <ul>
+              <li><b><em>国家資格</em>・中小企業診断士</b><span>経済産業大臣登録。経営・資産の診断と助言の専門家です。</span></li>
+              <li><b>認定経営革新等支援機関</b><span>国の認定を受けた経営支援の専門機関。補助金申請の支援実績が多数あります。</span></li>
+              <li><b>賠償責任保険 加入</b><span>万一、作業中に物を破損した場合にも備えています。</span></li>
+              <li><b>二拠点・地縁のある体制</b><span>東京（大田区・池上）と埼玉（比企・小川町）。土地に縁のある担当者がうかがいます。</span></li>
+            </ul>
+          </div>
+          <div class="company">
+            <dl>
+              <dt>屋号</dt><dd>家守（いえもり）</dd>
+              <dt>運営</dt><dd>株式会社ネクストアップ</dd>
+              <dt>所在地</dt><dd>東京都大田区池上6-24-6</dd>
+              <dt>代表者</dt><dd>吉野 一哉（代表取締役・中小企業診断士）</dd>
+              <dt>連絡先</dt><dd>info@iemori-kanri.jp</dd>
+              <dt>対応</dt><dd>東京・城南／埼玉・比企ほか</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ エリア ============ -->
+  <section id="area" style="background:#faf6ec;padding-top:0">
+    <div class="wrap" style="padding-top:96px">
+      <div class="sec-head reveal">
+        <div class="kicker"><span class="no">八</span><span class="bar"></span><span class="label">対応エリア</span></div>
         <h2>東京と埼玉、二つの地元で。</h2>
       </div>
       <div class="areas">
@@ -575,90 +906,64 @@
         <div class="area reveal">
           <h3>埼玉・比企／県央エリア</h3>
           <div class="base">拠点：比企郡（小川町）</div>
-          <p>東松山市、小川町、嵐山町、滑川町、ときがわ町、川島町、吉見町、鳩山町、寄居町、越生町、毛呂山町、東秩父村、長瀞町、熊谷市（江南地域） ほか。都心の依頼者が持つ“ふるさとの実家”を見守ります。</p>
+          <p>東松山市、小川町、嵐山町、滑川町、ときがわ町、川島町、吉見町、鳩山町、寄居町、越生町、毛呂山町、東秩父村、長瀞町、熊谷市（江南地域） ほか。都心にお住まいの方の「ふるさとのご実家」を見守ります。</p>
         </div>
       </div>
       <p class="price-note">※ 上記エリア外もお気軽にご相談ください。</p>
     </div>
   </section>
 
-  <!-- STEPS -->
+  <!-- ============ 流れ ============ -->
   <section id="flow" class="band">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow" style="color:#9ec0a2">ご利用の流れ</span>
+        <div class="kicker"><span class="no">九</span><span class="bar"></span><span class="label">ご利用の流れ</span></div>
         <h2>ご相談から、見守り開始まで。</h2>
       </div>
       <div class="steps">
-        <div class="step reveal"><div class="sn">01</div><h3>ご相談</h3><p>フォームよりご連絡ください。物件の所在地をお知らせいただくとスムーズです。</p></div>
-        <div class="step reveal"><div class="sn">02</div><h3>無料お見積もり</h3><p>広さ・エリア・ご希望をもとにお見積もり。必要に応じて現地を確認します。</p></div>
-        <div class="step reveal"><div class="sn">03</div><h3>ご契約</h3><p>契約書を発行し、鍵のお預かり方法・報告先を確認します。</p></div>
-        <div class="step reveal"><div class="sn">04</div><h3>見守り開始</h3><p>初回巡回後、写真つき報告書をお送りします。以降は毎月ご指定の日程で。</p></div>
+        <div class="step reveal"><div class="sn">第一</div><h3>ご相談</h3><p>フォームまたはLINEでご連絡ください。物件の所在地をお知らせいただくとスムーズです。</p></div>
+        <div class="step reveal"><div class="sn">第二</div><h3>無料お見積もり</h3><p>広さ・エリア・ご希望をもとにお見積もり。必要に応じて現地を確認します。</p></div>
+        <div class="step reveal"><div class="sn">第三</div><h3>ご契約</h3><p>契約書を発行し、鍵のお預かり方法・ご報告先を確認します。</p></div>
+        <div class="step reveal"><div class="sn">第四</div><h3>見守り開始</h3><p>初回巡回後、写真つきのご報告をお送りします。以降は毎月ご指定の日程で。</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="wrap">
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap" style="max-width:860px">
       <div class="sec-head reveal">
-        <span class="eyebrow">私たちについて</span>
-        <h2>国家資格を持つ専門家が、<br>あなたの窓口です。</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about reveal">
-          <!-- 顔写真(profile.jpeg)が用意できたらここに追加 -->
-          <p>私自身、埼玉に父方の実家があり、東京と行き来する生活のなかで、「離れた家をどう守るか」という問いに向き合ってきました。いずれ売るのか、貸すのか、残すのか——答えを出すには時間がかかります。でも、その間にも家は傷んでいく。<strong>まず家を守りながら、じっくり方針を決められる仕組み</strong>が必要だと感じたのが、家守の出発点です。</p>
-          <p>だから家守は、毎月の見守りと同時に、相続・税・売却といった"その先"まで一緒に考えます。中小企業診断士・認定支援機関として培った、補助金や助成金の申請支援のノウハウも、空き家の活用をお考えの際にお役に立てます。実際に家へうかがうのは、その地域に暮らし、土地に縁のある担当者。だれかの大切な実家を、我が事と同じ気持ちで見守ります。</p>
-          <p class="sign">株式会社ネクストアップ　代表取締役　吉野 一哉<br><span style="font-size:.8rem;color:var(--muted);font-family:var(--sans)">中小企業診断士／認定経営革新等支援機関</span></p>
-        </div>
-        <div class="company reveal">
-          <dl>
-            <dt>屋号</dt><dd>家守（いえもり）</dd>
-            <dt>運営</dt><dd>株式会社ネクストアップ</dd>
-            <dt>所在地</dt><dd>東京都大田区池上6-24-6</dd>
-            <dt>代表者</dt><dd>吉野 一哉（代表取締役・中小企業診断士）</dd>
-            <dt>連絡先</dt><dd>info@iemori-kanri.jp</dd>
-            <dt>対応</dt><dd>東京・城南／埼玉・比企ほか</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" style="background:#faf6ec">
-    <div class="wrap" style="max-width:820px">
-      <div class="sec-head reveal">
-        <span class="eyebrow">よくあるご質問</span>
+        <div class="kicker"><span class="no">十</span><span class="bar"></span><span class="label">よくあるご質問</span></div>
         <h2>ご相談の前に。</h2>
       </div>
       <div class="faq reveal">
-        <details><summary>他人に家を見てもらうのは不安です。</summary><div class="fa">地元に暮らす担当者がうかがい、毎回かならず写真つきでご報告します。鍵の管理方法も契約時に明確にしますので、ご安心ください。</div></details>
-        <details><summary>鍵は預ける必要がありますか？</summary><div class="fa">室内点検を含むプランではお預かりします。お預かり方法は契約時にご相談のうえ決定します。外観の確認のみをご希望の場合は、鍵なしでも対応可能です。</div></details>
-        <details><summary>遠方に住んでいても大丈夫ですか？</summary><div class="fa">はい。むしろ遠方にお住まいの方のためのサービスです。ご報告はLINEまたはメールでお送りするので、どこにいても実家の様子を確認できます。</div></details>
-        <details><summary>相続の相談だけでもいいですか？</summary><div class="fa">歓迎します。管理とセットでなくても構いません。相続した家をどうするか迷っている段階から、お気軽にご相談ください。</div></details>
+        <details><summary>他人に家を見てもらうのは不安です。</summary><div class="fa">国家資格（中小企業診断士）を持つ代表が窓口となり、実際にうかがうのは地元に暮らす地縁のある担当者です。毎回かならず写真つきでご報告し、鍵の管理方法も契約時に明確にいたします。賠償責任保険にも加入しています。</div></details>
+        <details><summary>鍵は預ける必要がありますか？</summary><div class="fa">室内点検を含むプランではお預かりします。保管方法・受け渡し方法は契約時にご相談のうえ決定し、契約書に明記します。外観の確認のみをご希望の場合は、鍵なしでも対応可能です。</div></details>
+        <details><summary>資産価値の高い家なので、慎重に任せる先を選びたいのですが。</summary><div class="fa">そのようなお客様にこそ「資産管理プレミアム」をおすすめしています。代表が専任窓口となり、所見つきの月次レポートと四半期面談で、資産の状態と方針を継続的にご一緒に確認します。ご契約前の面談も承りますので、まずはお人柄と考え方をご確認ください。</div></details>
+        <details><summary>遠方に住んでいても大丈夫ですか？</summary><div class="fa">はい。むしろ遠方にお住まいの方のためのサービスです。ご報告はLINEまたはメールでお送りするので、どこにいてもご実家の様子を確認できます。</div></details>
+        <details><summary>相続の相談だけでもいいですか？</summary><div class="fa">歓迎します。管理とセットでなくても構いません。相続した家をどうするか迷っている段階から、お気軽にご相談ください。税理士・司法書士のご紹介も可能です。</div></details>
+        <details><summary>複数の物件をまとめてお願いできますか？</summary><div class="fa">承ります。ご自宅・ご実家・別宅・法人物件など、複数物件の一括管理は「資産管理プレミアム」または法人プランで対応しています。窓口はひとつにまとまります。</div></details>
         <details><summary>解約はできますか？</summary><div class="fa">ご解約はいつでも承ります。解約届をご提出いただき、届出月の翌月末をもって契約終了となります。違約金・解約手数料はかかりません。お預かりしている鍵は、ご希望の方法（郵送・手渡し）で速やかにご返却いたします。なお、契約終了までに実施した巡回分の費用は、通常どおりご精算いただきます。</div></details>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT FORM -->
-  <section id="contact">
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" style="background:#faf6ec">
     <div class="wrap">
       <div class="contact-box reveal">
         <div class="contact-intro">
           <h2>まずは、無料でご相談ください。</h2>
-          <p>物件の所在地・広さをお知らせいただくと、お見積もりがスムーズです。相続のご相談だけでも構いません。</p>
+          <p>いただいたご相談は、代表（中小企業診断士）が直接拝見し、ご返信します。物件の所在地・広さをお知らせいただくと、お見積もりがスムーズです。相続のご相談だけでも構いません。</p>
           <ul class="reassure">
-            <li><svg width="17" height="17" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" stroke="#9ec0a2" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>通常1営業日以内にご返信</li>
-            <li><svg width="17" height="17" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" stroke="#9ec0a2" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>相続の相談だけでもOK</li>
-            <li><svg width="17" height="17" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" stroke="#9ec0a2" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>しつこい営業はいたしません</li>
+            <li><svg width="17" height="17" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" stroke="#c2a662" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>代表が直接拝見し、通常1営業日以内にご返信</li>
+            <li><svg width="17" height="17" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" stroke="#c2a662" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>秘密厳守。ご相談内容が外部に漏れることはありません</li>
+            <li><svg width="17" height="17" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" stroke="#c2a662" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>しつこい営業はいたしません</li>
           </ul>
           <a href="https://lin.ee/ru3MXxW" target="_blank" rel="noopener" class="btn-line">LINEでお気軽に相談する</a>
         </div>
 
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/kazuya.yoshino@gmail.com" method="POST"> id="contactForm" action="https://formsubmit.co/ajax/kazuya.yoshino@gmail.com" method="POST">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/kazuya.yoshino@gmail.com" method="POST">
           <div class="form-msg ok" id="formOk">送信しました。1営業日以内にご返信します。ありがとうございました。</div>
           <div class="form-msg err" id="formErr">送信に失敗しました。お手数ですが、時間をおいて再度お試しください。</div>
 
@@ -690,8 +995,8 @@
               <label for="f-topic">ご相談内容<span class="req">必須</span></label>
               <select id="f-topic" name="ご相談内容" required>
                 <option value="">選択してください</option>
-                <option>空き家の見守り管理（個人）</option>
                 <option>資産管理プレミアム</option>
+                <option>空き家の見守り管理（個人）</option>
                 <option>物件の管理（法人）</option>
                 <option>相続後の活用・売却の相談</option>
                 <option>管理と相続の両方</option>
@@ -706,7 +1011,7 @@
 
           <label class="consent">
             <input type="checkbox" required>
-            <span><a href="/privacy.html" target="_blank" rel="noopener">個人情報の取扱い</a>に同意します<span class="req" style="color:var(--green-deep)">必須</span></span>
+            <span><a href="/privacy.html" target="_blank" rel="noopener">個人情報の取扱い</a>に同意します<span class="req" style="color:var(--kin)">必須</span></span>
           </label>
 
           <!-- honeypot (spam対策・入力しないでください) -->
@@ -730,13 +1035,14 @@
     <div class="fgrid">
       <div class="fbrand">
         <span class="mark">家守（いえもり）</span>
-        <p>相続空き家の見守り管理。東京・城南／埼玉・比企。地縁のある担当者が、あなたの実家を見守ります。</p>
+        <p>相続した家・空き家の資産管理。国家資格・中小企業診断士である代表が、見守りから資産の出口まで。東京・城南／埼玉・比企。</p>
       </div>
       <nav>
-        <a href="#service">サービス・料金</a>
+        <a href="#difference">家守の違い</a>
+        <a href="#premium">資産管理プレミアム</a>
+        <a href="#price">料金プラン</a>
         <a href="#area">対応エリア</a>
         <a href="#faq">よくある質問</a>
-        <a href="#about">私たちについて</a>
         <a href="#contact">お問い合わせ</a>
         <a href="https://lin.ee/ru3MXxW" target="_blank" rel="noopener">LINE相談</a>
       </nav>
@@ -766,11 +1072,6 @@
       ok.classList.remove('show');err.classList.remove('show');
       var btn=form.querySelector('button[type=submit]');
       var endpoint=form.getAttribute('action');
-      // エンドポイント未設定なら注意（デプロイ前のプレビュー対策）
-      if(endpoint.indexOf('【')>-1){
-        alert('フォームの送信先メールアドレスがまだ設定されていません。\\nform の action にあるメールアドレスを差し替えてください。');
-        return;
-      }
       btn.disabled=true;btn.textContent='送信中…';
       fetch(endpoint,{
         method:'POST',
@@ -794,7 +1095,7 @@
   if(!mq.matches){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
-    },{threshold:.12});
+    },{threshold:.1});
     document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
   }else{
     document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
