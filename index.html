@@ -393,9 +393,11 @@
   .about p{margin-bottom:18px;color:#3a3f45}
   .about .sign{font-family:var(--serif);color:var(--indigo-deep);font-size:1.15rem;margin-top:24px}
   .about .sign small{font-size:.8rem;color:var(--muted);font-family:var(--sans);display:block;margin-top:4px}
+  .about-top{display:flex;gap:30px;align-items:center;margin-bottom:30px}
+  .profile-photo{width:180px;height:225px;object-fit:cover;border-radius:4px;box-shadow:var(--shadow);flex:none}
   .quote{
     font-family:var(--serif);font-size:1.3rem;color:var(--indigo-deep);line-height:2.1;
-    padding-left:24px;border-left:2px solid var(--kin);margin-bottom:28px;font-weight:500;
+    padding-left:24px;border-left:2px solid var(--kin);font-weight:500;
   }
   .cred-card{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
   .cred-card .head{background:var(--indigo-deep);color:#fdfbf5;padding:18px 26px;font-family:var(--serif);font-size:1rem;letter-spacing:.08em}
@@ -536,6 +538,8 @@
     .cred-row span{padding-right:0;margin-right:18px;font-size:.8rem}
     .pdf-card{padding:26px 22px}
     .pdf-rows{grid-template-columns:1fr}
+    .about-top{flex-direction:column;align-items:flex-start;gap:20px}
+    .profile-photo{width:200px;height:250px}
     .pdf-photos figure{height:86px}
     .pdf-stats{grid-template-columns:1fr;gap:6px}
     .pdf-stats div{display:flex;justify-content:space-between;align-items:center;text-align:left;padding:9px 12px}
@@ -974,8 +978,10 @@
       </div>
       <div class="about-grid">
         <div class="about reveal">
-          <!-- 顔写真(profile.jpeg)が用意できたらここに追加 -->
-          <p class="quote">大切な家を任せる相手は、<br>「誰なのか」が見えるべきだと思うのです。</p>
+          <div class="about-top">
+            <img src="profile.jpeg" alt="株式会社ネクストアップ 代表取締役 吉野一哉" class="profile-photo" loading="lazy">
+            <p class="quote">大切な家を任せる相手は、<br>「誰なのか」が見えるべきだと思うのです。</p>
+          </div>
           <p>私自身、埼玉に父方の実家があり、東京と行き来する生活のなかで、「離れた家をどう守るか」という問いに向き合ってきました。いずれ売るのか、貸すのか、残すのか——答えを出すには時間がかかります。でも、その間にも家は傷んでいく。<strong>まず家を守りながら、じっくり方針を決められる仕組み</strong>が必要だと感じたのが、家守の出発点です。</p>
           <p>だから家守は、毎月の見守りと同時に、相続・税・売却といった「その先」まで一緒に考えます。経営と資産の分析を本業としてきた中小企業診断士として、感覚ではなく、数字と根拠でご提案します。実際に家へうかがうのは、その地域に暮らし、土地に縁のある担当者。だれかの大切なご実家を、我が事と同じ気持ちで見守ります。</p>
           <p class="sign">株式会社ネクストアップ　代表取締役　吉野 一哉<small>中小企業診断士（経済産業大臣登録）／認定経営革新等支援機関</small></p>

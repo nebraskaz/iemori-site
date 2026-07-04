@@ -27,6 +27,10 @@ key.jpeg        - サービス写真（鍵）
 report-exterior.jpeg  - LINEレポート写真（外観）
 report-interior.jpeg  - LINEレポート写真（室内）
 report-water.jpeg     - LINEレポート写真（水回り）
+profile.jpeg    - 代表の顔写真（代表についてセクション）
+og.jpeg         - OGP画像（1200x630、SNS/LINE共有用）
+favicon.svg     - 落款風「守」favicon
+apple-touch-icon.png - iOS用アイコン
 ```
 
 ## デプロイ
