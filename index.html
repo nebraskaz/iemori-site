@@ -5,9 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>家守（いえもり）｜相続した家の資産管理・空き家見守り｜公的制度に強い専門家が直接対応</title>
 <meta name="description" content="相続した家・空き家は、大切な資産です。補助金など公的制度の申請支援を多数手がけてきた専門家（中小企業診断士）が窓口となり、毎月の巡回見守りから相続の出口（売却・賃貸・活用）まで直接対応。税理士・司法書士や、大田区など自治体の空き家窓口とも連携し、資産価値を守ります。東京・城南／埼玉・比企。月額9,900円〜。">
+<link rel="canonical" href="https://iemori-kanri.jp/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="家守（いえもり）">
+<meta property="og:title" content="家守（いえもり）｜相続した家の資産管理・空き家見守り">
+<meta property="og:description" content="受け継いだ家は、ご家族の大切な資産です。毎月の見守りから売却・賃貸・活用の出口まで、公的制度に強い専門家が窓口ひとつで伴走します。東京・城南／埼玉・比企。">
+<meta property="og:url" content="https://iemori-kanri.jp/">
+<meta property="og:image" content="https://iemori-kanri.jp/og.jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="hero.jpeg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "家守（いえもり）",
+  "description": "相続した家・空き家の見守り管理。毎月の巡回・写真つき報告から、売却・賃貸・活用という資産の出口まで、公的制度に強い専門家（中小企業診断士）が窓口ひとつで伴走します。",
+  "url": "https://iemori-kanri.jp/",
+  "image": "https://iemori-kanri.jp/og.jpeg",
+  "email": "info@iemori-kanri.jp",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "東京都",
+    "addressLocality": "大田区",
+    "streetAddress": "池上6-24-6"
+  },
+  "areaServed": ["東京都大田区", "東京都品川区", "東京都目黒区", "東京都世田谷区", "埼玉県東松山市", "埼玉県比企郡小川町", "埼玉県比企郡嵐山町", "埼玉県比企郡滑川町", "埼玉県比企郡ときがわ町", "埼玉県比企郡川島町", "埼玉県比企郡吉見町", "埼玉県比企郡鳩山町", "埼玉県大里郡寄居町", "埼玉県入間郡越生町", "埼玉県入間郡毛呂山町", "埼玉県秩父郡東秩父村", "埼玉県秩父郡長瀞町", "埼玉県熊谷市"],
+  "priceRange": "月額9,900円〜",
+  "founder": {
+    "@type": "Person",
+    "name": "吉野 一哉",
+    "jobTitle": "代表取締役・中小企業診断士"
+  },
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "株式会社ネクストアップ"
+  }
+}
+</script>
 <style>
   :root{
     --ink:#22262b;
@@ -319,6 +361,9 @@
   .plan ul li{padding:6px 0 6px 22px;position:relative}
   .plan ul li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
   .price-note{margin-top:26px;font-size:.82rem;color:var(--muted)}
+  .plan-cta{margin-top:auto;padding-top:20px}
+  .plan-cta a{display:block;text-align:center;border:1.5px solid var(--green);color:var(--green-deep);border-radius:2px;padding:11px 0;font-size:.88rem;font-weight:700;text-decoration:none;transition:background .2s ease,color .2s ease}
+  .plan-cta a:hover{background:var(--green);color:#fff}
 
   /* 放置リスク */
   .risk{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--kin);border-radius:4px;padding:40px 44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:34px;box-shadow:var(--shadow)}
@@ -672,7 +717,7 @@
             <span class="note">※ 物件の規模・状態によりお見積もりします</span>
           </div>
           <div style="margin-top:26px">
-            <a class="btn btn-kin btn-lg" href="#contact">プレミアムについて相談する</a>
+            <a class="btn btn-kin btn-lg" href="#contact" data-topic="資産管理プレミアム">プレミアムについて相談する</a>
           </div>
         </div>
         <div class="reveal">
@@ -827,7 +872,7 @@
         <div class="pp-price">
           <div class="yen">月額 33,000円〜</div>
           <small>税込・お見積もりにて確定</small>
-          <a class="btn btn-kin" href="#contact">相談してみる</a>
+          <a class="btn btn-kin" href="#contact" data-topic="資産管理プレミアム">相談してみる</a>
         </div>
       </div>
 
@@ -841,6 +886,7 @@
             <li>郵便物の確認</li>
             <li>写真つき報告</li>
           </ul>
+          <div class="plan-cta"><a href="#contact" data-topic="空き家の見守り管理（個人）">このプランについて相談</a></div>
         </div>
         <div class="plan reveal">
           <h3>見守りスタンダード</h3>
@@ -851,6 +897,7 @@
             <li>室内の簡易清掃</li>
             <li>緊急時の一次対応</li>
           </ul>
+          <div class="plan-cta"><a href="#contact" data-topic="空き家の見守り管理（個人）">このプランについて相談</a></div>
         </div>
         <div class="plan reveal">
           <h3>法人物件の管理</h3>
@@ -861,6 +908,7 @@
             <li>代表が直接対応</li>
             <li>活用・売却の出口もご相談</li>
           </ul>
+          <div class="plan-cta"><a href="#contact" data-topic="物件の管理（法人）">このプランについて相談</a></div>
         </div>
         <div class="plan feature reveal">
           <h3>相続まるごと相談</h3>
@@ -871,6 +919,7 @@
             <li>補助金・助成金の申請支援</li>
             <li>特定空家リスクの回避</li>
           </ul>
+          <div class="plan-cta"><a href="#contact" data-topic="相続後の活用・売却の相談">このプランについて相談</a></div>
         </div>
       </div>
       <p class="price-note">※ 記載価格は目安です。料金は物件の広さ・状態・エリアにより変動します。緊急時の現地確認・業者への連絡代行は月額内で対応、長時間の立ち合いや実作業は別途ご相談となります。</p>
@@ -1016,6 +1065,23 @@
     </div>
   </section>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "他人に家を見てもらうのは不安です。", "acceptedAnswer": {"@type": "Answer", "text": "中小企業診断士である代表が窓口となり、実際にうかがうのは地元に暮らす地縁のある担当者です。毎回かならず写真つきでご報告し、鍵の管理方法も契約時に明確にいたします。賠償責任保険にも加入しています。"}},
+      {"@type": "Question", "name": "鍵は預ける必要がありますか？預けた鍵はどう管理されますか？", "acceptedAnswer": {"@type": "Answer", "text": "室内点検を含むプランでは合鍵をお預かりします。お預かりした合鍵は、板厚1mmの鋼板でつくられ建物に固定された、かけ忘れ防止装置つきの専用保管庫（公安委員会が指定する猟銃保管用ガンロッカーと同等の仕様）で厳重に保管します。受け渡し方法は契約時にご相談のうえ決定し、契約書に明記します。外観の確認のみをご希望の場合は、鍵なしでも対応可能です。"}},
+      {"@type": "Question", "name": "資産価値の高い家なので、慎重に任せる先を選びたいのですが。", "acceptedAnswer": {"@type": "Answer", "text": "そのようなお客様にこそ「資産管理プレミアム」をおすすめしています。代表が専任窓口となり、所見つきの月次レポートと四半期面談で、資産の状態と方針を継続的にご一緒に確認します。ご契約前の面談も承ります。"}},
+      {"@type": "Question", "name": "遠方に住んでいても大丈夫ですか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。むしろ遠方にお住まいの方のためのサービスです。ご報告はLINEまたはメールでお送りするので、どこにいてもご実家の様子を確認できます。"}},
+      {"@type": "Question", "name": "相続の相談だけでもいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "歓迎します。管理とセットでなくても構いません。相続した家をどうするか迷っている段階から、お気軽にご相談ください。税理士・司法書士のご紹介も可能です。"}},
+      {"@type": "Question", "name": "空き家の活用に、補助金や自治体の制度は使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "物件の状態や活用の目的によって、使える制度は変わります。認定経営革新等支援機関として補助金・助成金の申請支援を多数手がけてきましたので、使える制度の調査から申請まで一貫してお手伝いできます。大田区など自治体の空き家窓口・空き家バンクへの橋渡しも可能です。"}},
+      {"@type": "Question", "name": "複数の物件をまとめてお願いできますか？", "acceptedAnswer": {"@type": "Answer", "text": "承ります。ご自宅・ご実家・別宅・法人物件など、複数物件の一括管理は「資産管理プレミアム」または法人プランで対応しています。窓口はひとつにまとまります。"}},
+      {"@type": "Question", "name": "解約はできますか？", "acceptedAnswer": {"@type": "Answer", "text": "ご解約はいつでも承ります。解約届をご提出いただき、届出月の翌月末をもって契約終了となります。違約金・解約手数料はかかりません。お預かりしている鍵は、ご希望の方法で速やかにご返却いたします。"}}
+    ]
+  }
+  </script>
+
   <!-- ============ CONTACT ============ -->
   <section id="contact" style="background:#faf6ec">
     <div class="wrap">
@@ -1157,6 +1223,14 @@
       });
     });
   }
+
+  // プランCTA → フォームの相談内容を自動選択
+  document.querySelectorAll('a[data-topic]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var s=document.getElementById('f-topic');
+      if(s)s.value=a.getAttribute('data-topic');
+    });
+  });
 
   // scroll reveal
   var mq=window.matchMedia('(prefers-reduced-motion:reduce)');
